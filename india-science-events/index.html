@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Science & Research Events — Where To Go</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --surface:#ffffff;--surface2:#f6f7fc;--surface3:#eef1f9;
+  --border:#dde3f1;--border2:#cbd4e8;
+  --text:#171f36;--text2:#3a4560;--muted:#67728c;--faint:#8b96ad;
+  --accent:#6d28d9;--accentSoft:#efeafb;
+  --phys:#6d28d9;--phys-bg:#efeafb;
+  --bio:#0f766e;--bio-bg:#d9f2ec;
+  --cross:#be185d;--cross-bg:#fce2ec;
+  --mix:#3b5bd9;--mix-bg:#e5ebfb;
+  --free-tx:#15803d;--free-bg:#dcfce7;--free-bd:#a7e8bf;
+  --paid-tx:#b45309;--paid-bg:#fbe8cf;--paid-bd:#f2ca8c;
+  --headerGrad:linear-gradient(135deg,#efeaff 0%,#f3e9ff 52%,#fdeef6 100%);
+  --brand:linear-gradient(135deg,#4f46e5 0%,#7c3aed 52%,#db2777 100%);
+  --lift:0 14px 32px -14px rgba(60,40,110,.30),0 3px 9px -6px rgba(60,40,110,.20);
+  --shadow:0 1px 2px rgba(30,40,80,.06);
+  --font-display:'Fraunces',Georgia,serif;
+}
+body.dark{
+  --surface:#151827;--surface2:#0e1019;--surface3:#12151f;
+  --border:#242a3d;--border2:#333a52;
+  --text:#eef0f7;--text2:#ccd3e4;--muted:#8b93b5;--faint:#6b7396;
+  --accent:#a78bfa;--accentSoft:#241b3d;
+  --phys:#a78bfa;--phys-bg:#241b3d;
+  --bio:#34d399;--bio-bg:#0f2a22;
+  --cross:#f472b6;--cross-bg:#2e1020;
+  --mix:#8ea2f5;--mix-bg:#191d3a;
+  --free-tx:#4ade80;--free-bg:#10261d;--free-bd:#1c5238;
+  --paid-tx:#fbbf24;--paid-bg:#2a1f0a;--paid-bd:#5c4414;
+  --headerGrad:linear-gradient(135deg,#1b1636 0%,#171226 55%,#221329 100%);
+  --lift:0 16px 40px -16px rgba(0,0,0,.6);
+  --shadow:0 1px 2px rgba(0,0,0,.3);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:'Plus Jakarta Sans','Inter',system-ui,-apple-system,sans-serif;background:var(--surface2);color:var(--text);letter-spacing:-.01em;line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;min-height:100vh}
+.header{position:relative;overflow:hidden;background:var(--headerGrad);border-bottom:1px solid var(--border);padding:26px 18px 20px}
+.header::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 90% at 100% 0,rgba(124,58,237,.15),transparent 58%);pointer-events:none}
+.h-inner{max-width:1120px;margin:0 auto;position:relative;z-index:1}
+.h-label{font-size:10.5px;letter-spacing:2.6px;font-weight:800;text-transform:uppercase;color:var(--muted)}
+.h-title{font-family:var(--font-display);font-weight:600;font-size:clamp(23px,5.6vw,34px);line-height:1.08;letter-spacing:-.02em;margin:9px 0 10px}
+.h-title em{font-style:italic;background:var(--brand);-webkit-background-clip:text;background-clip:text;color:transparent}
+.h-sub{font-size:14.5px;color:var(--text2);max-width:62ch;margin:0 0 14px}
+.h-sub b{color:var(--text);font-weight:700}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+.lchip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;padding:5px 10px;border-radius:20px;background:color-mix(in srgb,var(--surface) 72%,transparent);border:1px solid var(--border2)}
+.ldot{width:9px;height:9px;border-radius:3px}
+.ld-phys{background:var(--phys)}.ld-bio{background:var(--bio)}.ld-cross{background:var(--cross)}.ld-mix{background:var(--mix)}
+#themeBtn{position:absolute;top:0;right:0;font-family:inherit;font-size:11px;font-weight:700;padding:7px 13px;border-radius:20px;border:1px solid var(--border2);background:color-mix(in srgb,var(--surface) 78%,transparent);color:var(--text2);cursor:pointer;z-index:3;backdrop-filter:blur(8px)}
+#themeBtn:hover{border-color:var(--accent);color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:6;display:flex;gap:2px;background:var(--surface);border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;padding:0 6px}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex-shrink:0;padding:13px 15px;background:transparent;border:none;border-bottom:2.5px solid transparent;color:var(--muted);font-size:12.5px;font-weight:800;letter-spacing:.2px;cursor:pointer;font-family:inherit;white-space:nowrap;transition:color .15s}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab .tn{font-weight:700;opacity:.65;font-size:11px}
+.filters{display:flex;gap:7px;padding:11px 16px;overflow-x:auto;scrollbar-width:none;background:var(--surface2);border-bottom:1px solid var(--border);position:sticky;top:44px;z-index:5}
+.filters::-webkit-scrollbar{display:none}
+.fbtn{flex-shrink:0;padding:6px 13px;border-radius:16px;border:1px solid var(--border2);background:var(--surface);color:var(--muted);font-size:11.5px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;transition:all .15s;display:inline-flex;align-items:center;gap:6px}
+.fbtn .fd{width:8px;height:8px;border-radius:50%}
+.fd-phys{background:var(--phys)}.fd-bio{background:var(--bio)}.fd-cross{background:var(--cross)}.fd-mix{background:var(--mix)}
+.fbtn.on{color:#fff;border-color:transparent;background:var(--brand);box-shadow:0 3px 10px rgba(90,62,224,.28)}
+.fbtn.on .fd{background:#fff}
+.wrap{max-width:1120px;margin:0 auto;padding:8px 16px 76px}
+.view{display:none}
+.view.active{display:block;animation:fade .3s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view.active{animation:none}}
+.intro{font-size:14.5px;color:var(--text2);padding:16px 2px 4px;line-height:1.55}
+.intro b{color:var(--text);font-weight:700}
+.stgroup{font-family:var(--font-display);font-style:italic;font-weight:600;font-size:17px;letter-spacing:-.01em;color:var(--text);display:flex;align-items:center;gap:10px;padding:22px 2px 12px;margin-top:6px}
+.stgroup::before{content:'';width:8px;height:22px;border-radius:4px;flex-shrink:0;background:var(--gcolor,var(--brand))}
+.stgroup.g-phys{--gcolor:var(--phys)}.stgroup.g-bio{--gcolor:var(--bio)}.stgroup.g-cross{--gcolor:var(--cross)}.stgroup.g-mix{--gcolor:var(--mix)}
+.stgroup .gc{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-size:11px;color:var(--muted);letter-spacing:.3px}
+.note{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:15px 16px;margin:8px 0 4px;font-size:14px;color:var(--text2);line-height:1.55;box-shadow:var(--shadow)}
+.note b{color:var(--text);font-weight:700}
+.note.warn{background:var(--paid-bg);border-color:var(--paid-bd);color:var(--paid-tx)}
+.note.warn b{color:var(--paid-tx)}
+.note.tip{background:var(--phys-bg);border-color:color-mix(in srgb,var(--phys) 30%,transparent)}
+.note.tip b{color:var(--phys)}
+.grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:820px){.grid{grid-template-columns:1fr 1fr;gap:14px}}
+@media(min-width:1240px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.card{background:var(--surface);border:1px solid var(--border);border-left-width:4px;border-radius:14px;padding:15px 16px 14px;box-shadow:var(--shadow);transition:box-shadow .18s,transform .12s;display:flex;flex-direction:column}
+.card:hover{box-shadow:var(--lift);transform:translateY(-2px)}
+.card.phys{border-left-color:var(--phys)}
+.card.bio{border-left-color:var(--bio)}
+.card.cross{border-left-color:var(--cross)}
+.card.mix{border-left-color:var(--mix)}
+.card.hide{display:none}
+.c-name{font-family:var(--font-display);font-weight:600;font-size:17.5px;line-height:1.18;letter-spacing:-.01em;margin:0 0 9px;overflow-wrap:anywhere}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:11px}
+.chip{font-size:10.5px;font-weight:700;letter-spacing:.2px;padding:4px 9px;border-radius:13px;border:1px solid transparent;display:inline-flex;align-items:center;gap:4px}
+.chip.when{background:var(--accentSoft);color:var(--accent);border-color:color-mix(in srgb,var(--accent) 24%,transparent)}
+.chip.free{background:var(--free-bg);color:var(--free-tx);border-color:var(--free-bd)}
+.chip.paid{background:var(--paid-bg);color:var(--paid-tx);border-color:var(--paid-bd)}
+.chip.city{background:var(--surface3);color:var(--muted);border-color:var(--border)}
+.c-lead{font-size:14px;color:var(--text);margin:0 0 8px;line-height:1.5}
+.c-why{font-size:13px;color:var(--muted);margin:0;line-height:1.5}
+.c-why b{color:var(--text2);font-weight:700}
+.c-where{margin-top:11px;padding-top:10px;border-top:1px dashed var(--border2);font-size:11.5px;line-height:1.5}
+.c-where a{display:block;text-decoration:none;overflow-wrap:anywhere}
+.c-where .addr{color:var(--muted);font-weight:600;margin-bottom:6px}
+.c-where .addr:hover{color:var(--accent)}
+.c-where .go{color:var(--accent);font-weight:700}
+.c-where .go:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+.foot{margin-top:34px;padding-top:18px;border-top:1px solid var(--border);font-size:12px;color:var(--faint);line-height:1.6}
+.foot b{color:var(--muted);font-weight:700}
+</style>
+</head>
+<body>
+<header class="header">
+  <button id="themeBtn" aria-label="Toggle dark mode">Theme</button>
+  <div class="h-inner">
+    <div class="h-label">Field guide · verified July 2026</div>
+    <h1 class="h-title">Science you can <em>walk into</em></h1>
+    <p class="h-sub">Weighted to your real order — <b>physics first</b>, then <b>genetics, molecular biology &amp; evolution</b>, with AI as one small strand. Every card now shows <b>when</b>, <b>how much</b>, a <b>tappable address</b>, and a <b>sign-up link</b>. Tab one is your South India trip; tab two is the best of all-India.</p>
+    <div class="legend">
+      <span class="lchip"><span class="ldot ld-phys"></span>Physics &amp; the universe</span>
+      <span class="lchip"><span class="ldot ld-bio"></span>Life sciences</span>
+      <span class="lchip"><span class="ldot ld-mix"></span>Science culture</span>
+      <span class="lchip"><span class="ldot ld-cross"></span>Cross-field &amp; AI</span>
+    </div>
+  </div>
+</header>
+<nav class="tabs" role="tablist">
+  <button class="tab active" data-view="south" role="tab">South India trip <span class="tn">· your route</span></button>
+  <button class="tab" data-view="india" role="tab">All-India <span class="tn">· travel for these</span></button>
+</nav>
+<div class="filters" id="filters">
+  <button class="fbtn on" data-filter="all">Everything</button>
+  <button class="fbtn" data-filter="phys"><span class="fd fd-phys"></span>Physics</button>
+  <button class="fbtn" data-filter="bio"><span class="fd fd-bio"></span>Biology</button>
+  <button class="fbtn" data-filter="mix"><span class="fd fd-mix"></span>Sci culture</button>
+  <button class="fbtn" data-filter="cross"><span class="fd fd-cross"></span>Cross &amp; AI</button>
+</div>
+<div class="wrap">
+<section class="view active" data-view="south">
+  <div class="intro"><b>Bengaluru is your base</b> — India's densest cluster of research institutes that open to the public, and almost everything here is free. The rest of the south is short stops.</div>
+  <div class="stgroup g-phys">Physics &amp; the universe <span class="gc">your first love</span></div>
+  <div class="grid">
+    <div class="card phys" data-subj="phys">
+      <p class="c-name">ICTS — Kaapi with Kuriosity</p>
+      <div class="chips"><span class="chip when">Monthly · Sat/Sun 4:00–5:30 PM</span><span class="chip free">FREE</span><span class="chip city">JN Planetarium</span></div>
+      <p class="c-lead">A monthly public lecture on physics, maths and the cosmos — school-level, with long open discussion. Held in the Mini Auditorium, U R Rao Bhavana, at the planetarium. Recent talks: "story of π" (Jul 5) and "Spaces of Shapes" (Jun 28).</p>
+      <p class="c-why"><b>Made for you.</b> The August talk posts on the ICTS outreach page about two weeks ahead — register there for the alert.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=Jawaharlal+Nehru+Planetarium+High+Grounds+Bengaluru+560001">Jawaharlal Nehru Planetarium, Sri T. Chowdaiah Rd, High Grounds, Bengaluru 560001 — open in maps</a>
+        <a class="go" href="https://www.icts.res.in/outreach/kaapi-with-kuriosity">See next date &amp; register ›</a>
+      </div>
+    </div>
+    <div class="card phys" data-subj="phys">
+      <p class="c-name">ICTS — public &amp; named lectures</p>
+      <div class="chips"><span class="chip when">Through 2026 · watch page</span><span class="chip free">FREE</span><span class="chip city">ICTS / Science Gallery</span></div>
+      <p class="c-lead">Eminent physicists give open talks — the Chandrasekhar, Ramanujan and Einstein series. Some are on the ICTS campus, some at Science Gallery Bengaluru or the planetarium (each listing says which).</p>
+      <p class="c-why"><b>The frontier of physics</b>, explained by the people at it. Grab whichever lands in your travel window.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=ICTS+TIFR+Shivakote+Hesaraghatta+Bengaluru+560089">ICTS-TIFR, Survey 151, Shivakote, Hesaraghatta, Bengaluru 560089 — open in maps</a>
+        <a class="go" href="https://www.icts.res.in/lectures/public">Browse public lectures ›</a>
+      </div>
+    </div>
+    <div class="card phys" data-subj="phys">
+      <p class="c-name">Jawaharlal Nehru Planetarium</p>
+      <div class="chips"><span class="chip when">Sky shows most days · sky-watch: select eves</span><span class="chip paid">Show ≈₹75–125 · sky-watch free/low</span><span class="chip city">High Grounds</span></div>
+      <p class="c-lead">Public sky-theatre shows, a science centre, and telescope / sky-watching evenings — and a base for the city's amateur-astronomy community (BASE).</p>
+      <p class="c-why">The hands-on, look-up side of your physics love, and an easy place to meet fellow sky-watchers. Check show timings and sky-watch dates on the site.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=Jawaharlal+Nehru+Planetarium+High+Grounds+Bengaluru+560001">Sri T. Chowdaiah Rd, High Grounds, Bengaluru 560001 — open in maps</a>
+        <a class="go" href="https://taralaya.org">Show timings &amp; tickets ›</a>
+      </div>
+    </div>
+    <div class="card phys" data-subj="phys">
+      <p class="c-name">Raman Research Institute</p>
+      <div class="chips"><span class="chip when">Occasional public talks</span><span class="chip free">FREE</span><span class="chip city">Sadashivanagar</span></div>
+      <p class="c-lead">Physics and astronomy institute with public outreach lectures and open-house events.</p>
+      <p class="c-why">A quieter add-on when a public talk lands in your window — check alongside ICTS.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=Raman+Research+Institute+Sadashivanagar+Bengaluru+560080">C.V. Raman Ave, Sadashivanagar, Bengaluru 560080 — open in maps</a>
+        <a class="go" href="https://www.rri.res.in">Events &amp; outreach ›</a>
+      </div>
+    </div>
+  </div>
+  <div class="stgroup g-bio">Life sciences — genetics, molecular biology, evolution <span class="gc">your deeper pull</span></div>
+  <div class="grid">
+    <div class="card bio" data-subj="bio">
+      <p class="c-name">NCBS — public lectures &amp; talks</p>
+      <div class="chips"><span class="chip when">Talks through the year</span><span class="chip free">FREE</span><span class="chip city">GKVK, north</span></div>
+      <p class="c-lead">National Centre for Biological Sciences — molecular biology, genetics, evolution and neuroscience. Public lecture series plus research seminars, on the Bangalore Life Science Cluster.</p>
+      <p class="c-why"><b>The best place in the country</b> for the deeper biology you're drawn to. Public lectures are open; email ahead for a specific research seminar.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=NCBS+GKVK+Bellary+Road+Bengaluru+560065">NCBS, GKVK Campus, Bellary Rd, Bengaluru 560065 — open in maps</a>
+        <a class="go" href="https://www.ncbs.res.in/events">See the events calendar ›</a>
+      </div>
+    </div>
+    <div class="card bio" data-subj="bio">
+      <p class="c-name">inStem + C-CAMP (same campus)</p>
+      <div class="chips"><span class="chip when">Open-days &amp; seminars</span><span class="chip free">FREE</span><span class="chip city">GKVK, north</span></div>
+      <p class="c-lead">inStem (stem-cell &amp; regenerative biology) and C-CAMP (bio-innovation) share the NCBS campus and open up for lectures and lab tours during science-outreach days.</p>
+      <p class="c-why">Developmental and molecular biology up close — pair with an NCBS visit on the same trip.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=inStem+NCBS+GKVK+Bellary+Road+Bengaluru+560065">GKVK Campus, Bellary Rd, Bengaluru 560065 — open in maps</a>
+        <a class="go" href="https://www.instem.res.in">inStem &amp; C-CAMP events ›</a>
+      </div>
+    </div>
+    <div class="card mix" data-subj="mix">
+      <p class="c-name">Science Gallery Bengaluru</p>
+      <div class="chips"><span class="chip when">Wed–Thu 10–6 · Fri–Sun 10–8 · Mon–Tue closed</span><span class="chip free">FREE · no entry fee</span><span class="chip city">Sanjaynagar</span></div>
+      <p class="c-lead">A free public science space for young adults, founded by IISc, NCBS and ICTS. Interdisciplinary exhibitions (biology, physics, the mind, food) with lectures, workshops and films, and "Mediators" who'll talk the science through with you. Current season: "CALORIE" (food × science).</p>
+      <p class="c-why"><b>Purpose-built for exactly your curiosity</b>, and free. Book a slot on the site.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=Science+Gallery+Bengaluru+Sanjaynagar+Bellary+Road+560024">10–11, Bellary Rd, Sanjaynagar, Bengaluru 560024 — open in maps</a>
+        <a class="go" href="https://bengaluru.sciencegallery.com">See what's on &amp; book ›</a>
+      </div>
+    </div>
+  </div>
+  <div class="stgroup g-mix">See a whole institute · meet scientists <span class="gc">research culture</span></div>
+  <div class="grid">
+    <div class="card mix" data-subj="mix">
+      <p class="c-name">IISc — open seminars + Open Day</p>
+      <div class="chips"><span class="chip when">Seminars year-round · Open Day ≈ early Mar 2027 (last: Mar 7)</span><span class="chip free">FREE</span><span class="chip city">Malleshwaram</span></div>
+      <p class="c-lead">India's top science institute. Many departmental seminars are open; the annual Open Day opens the whole campus with popular lectures, demos and posters.</p>
+      <p class="c-why"><b>Your best single day of the year</b> — physics, bioengineering and biology in one walkable campus.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=Indian+Institute+of+Science+Bengaluru+560012">IISc, CV Raman Rd, Bengaluru 560012 — open in maps</a>
+        <a class="go" href="https://iisc.ac.in/events">Events &amp; Open Day info ›</a>
+      </div>
+    </div>
+    <div class="card mix" data-subj="mix">
+      <p class="c-name">Bangalore International Centre</p>
+      <div class="chips"><span class="chip when">Talks most days · see calendar</span><span class="chip free">FREE · some RSVP</span><span class="chip city">Domlur</span></div>
+      <p class="c-lead">A public institution for "informed conversations" — frequent talks spanning science, history and society.</p>
+      <p class="c-why">Highest-frequency free option, central, full of thoughtful people. Your easy default for any evening.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=Bangalore+International+Centre+Domlur+Bengaluru+560071">7, 4th Main Rd, Domlur II Stage, Bengaluru 560071 — open in maps</a>
+        <a class="go" href="https://bangaloreinternationalcentre.org">See the calendar &amp; RSVP ›</a>
+      </div>
+    </div>
+  </div>
+  <div class="stgroup g-cross">Where your fields meet · and the AI strand <span class="gc">kept small</span></div>
+  <div class="grid">
+    <div class="card cross" data-subj="cross">
+      <p class="c-name">Biophysics / Physics of Life</p>
+      <div class="chips"><span class="chip when">Talks year-round · Winter School Dec 21 – Jan 1</span><span class="chip free">Free talks · school by apply</span><span class="chip city">ICTS / NCBS</span></div>
+      <p class="c-lead">Where your three interests fuse — physics used to understand living systems. ICTS runs a "Physics of Life" programme and a Winter School on Biological Physics; NCBS has biophysics groups.</p>
+      <p class="c-why"><b>One theme that is physics + biology + medicine at once.</b> Public talks are open now; the schools are worth applying to later.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=ICTS+TIFR+Shivakote+Hesaraghatta+Bengaluru+560089">ICTS-TIFR, Shivakote, Bengaluru 560089 — open in maps</a>
+        <a class="go" href="https://www.icts.res.in/lectures/public">Physics-of-Life lectures ›</a>
+      </div>
+    </div>
+    <div class="card cross" data-subj="cross">
+      <p class="c-name">AI &amp; tech scene (dip in, don't overspend)</p>
+      <div class="chips"><span class="chip when">Meetups year-round · DataHack Aug 5–8 · BTS Nov 17–19</span><span class="chip free">Meetups FREE</span><span class="chip paid">DataHack ≈₹15k+ · BTS expo free</span></div>
+      <p class="c-lead">If you want the AI side: HasGeek, GDG and AI Tinkerers run mostly-free hands-on evenings. The big paid ones are DataHack Summit (Aug, at The Leela Bhartiya City — a premium ticket, roughly ₹15,000+, verify) and the healthtech track at Bengaluru Tech Summit (Nov, free visitor pass).</p>
+      <p class="c-why"><b>Deliberately short.</b> Dip in via the free meetups; skip the pricey summits unless one speaker is unmissable.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=The+Leela+Bhartiya+City+Thanisandra+Bengaluru+560064">DataHack venue: The Leela, Bhartiya City, Thanisandra, Bengaluru 560064 — open in maps</a>
+        <a class="go" href="https://hasgeek.com">Find free AI meetups (HasGeek) ›</a>
+      </div>
+    </div>
+  </div>
+  <div class="stgroup g-mix">Rest of the south <span class="gc">short stops</span></div>
+  <div class="grid">
+    <div class="card phys" data-subj="phys">
+      <p class="c-name">Chennai — IIT Madras + IMSc</p>
+      <div class="chips"><span class="chip when">Seminars year-round · Young-Researchers workshop Dec 3–5</span><span class="chip free">Free–ticketed</span><span class="chip city">Adyar / Taramani</span></div>
+      <p class="c-lead">IIT Madras runs physics and science seminars; the Institute of Mathematical Sciences (IMSc) nearby is a hub for theoretical physics and maths with its own public talks. A December workshop gives young researchers expert lectures on open problems.</p>
+      <p class="c-why"><b>IMSc is the hidden gem</b> for your physics/maths side. Shaastra (tech fest) runs early January.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=Institute+of+Mathematical+Sciences+Taramani+Chennai+600113">IMSc, 4th Cross St, CIT Campus, Taramani, Chennai 600113 — open in maps</a>
+        <a class="go" href="https://www.imsc.res.in">IMSc talks · iitm.ac.in/happenings/events ›</a>
+      </div>
+    </div>
+    <div class="card bio" data-subj="bio">
+      <p class="c-name">Mysuru — CFTRI / ComedKares</p>
+      <div class="chips"><span class="chip when">Programmes through the year</span><span class="chip free">Free–varies</span><span class="chip city">~3 hr from Bengaluru</span></div>
+      <p class="c-lead">CFTRI's BioNEST incubator runs food-science and biotech programmes; ComedKares hosts community innovation events (a past one had a Healthcare track).</p>
+      <p class="c-why">Thinner than Bengaluru — go if a bio programme lines up with your dates.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=CSIR+CFTRI+Mysuru+570020">CSIR-CFTRI, Cheluvamba Mansion, Mysuru 570020 — open in maps</a>
+        <a class="go" href="https://bionest.cftri.res.in">BioNEST programmes ›</a>
+      </div>
+    </div>
+    <div class="card mix" data-subj="mix">
+      <p class="c-name">Karaikal — NIT Puducherry</p>
+      <div class="chips"><span class="chip when">Symposiums / workshops · check page</span><span class="chip free">Free–varies</span><span class="chip city">NIT-Py campus</span></div>
+      <p class="c-lead">A national institute of technology right in Karaikal — technical symposiums and workshops (including past AI-in-healthcare ones). The town is otherwise quiet for science.</p>
+      <p class="c-why">Anchor any Karaikal stop around whatever NIT-Py has scheduled.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=NIT+Puducherry+Karaikal+609609">NIT Puducherry, Thiruvettakudy, Karaikal 609609 — open in maps</a>
+        <a class="go" href="https://www.nitpy.ac.in">NIT-Py events ›</a>
+      </div>
+    </div>
+    <div class="card mix" data-subj="mix">
+      <p class="c-name">Madurai — rest / culture stop</p>
+      <div class="chips"><span class="chip when">Occasional college fests</span><span class="chip city">thinnest for research</span></div>
+      <p class="c-lead">Thin for research; local engineering colleges run the odd symposium.</p>
+      <p class="c-why">Enjoy the city; detour for an event only if a college fest lines up with your dates.</p>
+      <div class="c-where">
+        <a class="go" href="https://knowafest.com">Check college fests (knowafest) ›</a>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="view" data-view="india">
+  <div class="intro"><b>The best of the country, in your order of interest.</b> Verified dates where fixed; recurring series show their cadence; annual ones show the reliable month plus the last edition as a guide.</div>
+  <div class="note tip"><b>The single best national move:</b> on <b>National Science Day (Feb 28)</b>, almost every major research institute — IISc, TIFR, NCBS, CCMB, IUCAA, the IISERs, ISRO centres — opens to the public with lectures, demos and campus tours, all free. Pick the biggest institute near wherever you are that day and go.</div>
+  <div class="stgroup g-phys">Physics &amp; the universe <span class="gc">your first love</span></div>
+  <div class="grid">
+    <div class="card phys" data-subj="phys">
+      <p class="c-name">TIFR — "Chai and Why?"</p>
+      <div class="chips"><span class="chip when">1st &amp; 3rd Sundays · ~11 AM / 5 PM</span><span class="chip free">FREE · walk-in</span><span class="chip city">Mumbai</span></div>
+      <p class="c-lead">India's iconic public science café, running since 2009 — a short talk by a scientist, then open Q&amp;A over chai. Topics span physics, genes, cells and chemistry. 1st Sunday at Prithvi Theatre (Juhu), 3rd at Ruparel College (Matunga). Also livestreamed.</p>
+      <p class="c-why"><b>Mumbai's answer to Kaapi with Kuriosity.</b> Just walk in; check the site for that Sunday's topic and timing.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=Prithvi+Theatre+Juhu+Mumbai+400049">Prithvi Theatre, Janki Kutir, Juhu, Mumbai 400049 — open in maps</a>
+        <a class="go" href="https://www.tifr.res.in/outreach/chai_and_why.html">Topics &amp; schedule ›</a>
+      </div>
+    </div>
+    <div class="card phys" data-subj="phys">
+      <p class="c-name">IUCAA — SciPOP outreach</p>
+      <div class="chips"><span class="chip when">Fri Sky Sessions · Open Day Feb 28</span><span class="chip free">FREE · register</span><span class="chip city">Pune</span></div>
+      <p class="c-lead">The astronomy-and-astrophysics centre's public programme: public lectures, Friday Sky Sessions, planetarium shows and campus visits where you meet working astronomers.</p>
+      <p class="c-why">Deep-physics and cosmology for curious minds. Its Feb 28 Open Day opens the whole campus — exhibitions, lectures, sky-watching.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=IUCAA+Ganeshkhind+Pune+411007">IUCAA, Post Bag 4, Ganeshkhind, Pune 411007 — open in maps</a>
+        <a class="go" href="https://scipop.iucaa.in">Programmes &amp; registration ›</a>
+      </div>
+    </div>
+    <div class="card phys" data-subj="phys">
+      <p class="c-name">IISERs &amp; TIFR-H physics open days</p>
+      <div class="chips"><span class="chip when">Around Feb 28 + campus events</span><span class="chip free">FREE</span><span class="chip city">Pune · Kolkata · Mohali · Hyderabad</span></div>
+      <p class="c-lead">The IISERs (Pune, Kolkata, Mohali, Bhopal, Tirupati…) and TIFR Hyderabad run physics-heavy open days, public lectures and science exhibitions, especially around National Science Day.</p>
+      <p class="c-why">If your travels take you near any IISER, check its outreach page — built for exactly your stage and interests.</p>
+      <div class="c-where">
+        <a class="go" href="https://www.iiserpune.ac.in">IISER Pune outreach (as example) ›</a>
+      </div>
+    </div>
+  </div>
+  <div class="stgroup g-bio">Life sciences — genetics, molecular biology, evolution <span class="gc">the medicine bridge</span></div>
+  <div class="grid">
+    <div class="card bio" data-subj="bio">
+      <p class="c-name">CCMB — labs &amp; public lectures</p>
+      <div class="chips"><span class="chip when">Outreach year-round</span><span class="chip free">FREE · apply</span><span class="chip city">Hyderabad</span></div>
+      <p class="c-lead">A premier molecular-biology institute with a dedicated Genetics &amp; Evolution programme, public lectures and national symposia. Its outreach lets motivated students (high-school onward) pick a lab and spend a day with a scientist.</p>
+      <p class="c-why"><b>The "spend a day in a lab" programme is gold for you</b> — real bench exposure and a chat with a working geneticist. A summer training programme also runs (check MBBS eligibility).</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=CCMB+Habsiguda+Hyderabad+500007">CCMB, Uppal Rd, Habsiguda, Hyderabad 500007 — open in maps</a>
+        <a class="go" href="https://www.ccmb.res.in">Outreach programmes ›</a>
+      </div>
+    </div>
+    <div class="card bio" data-subj="bio">
+      <p class="c-name">IndiaBioscience</p>
+      <div class="chips"><span class="chip when">Always on</span><span class="chip free">FREE</span><span class="chip city">online + events</span></div>
+      <p class="c-lead">The national hub for the life-sciences community — it lists talks, meetings, outreach, fellowships and early-career opportunities across every bio institute in India.</p>
+      <p class="c-why"><b>Bookmark this to never miss a biology event</b> anywhere in the country, and to find research openings as you go deeper.</p>
+      <div class="c-where">
+        <a class="go" href="https://indiabioscience.org">Events &amp; opportunities ›</a>
+      </div>
+    </div>
+    <div class="card cross" data-subj="cross">
+      <p class="c-name">BioAsia</p>
+      <div class="chips"><span class="chip when">~Feb 2027 (2026 was Feb 17–18)</span><span class="chip paid">Paid · delegate ≈₹15k+ (student rates lower)</span><span class="chip city">Hyderabad</span></div>
+      <p class="c-lead">Asia's largest life-sciences forum. The 2026 theme was AI-native biology: AI-driven drug discovery, genomics, synthetic biology and digital health, with speakers from DeepMind, Amgen and top pharma.</p>
+      <p class="c-why"><b>Exactly your medicine-meets-biology frontier</b> — but an industry summit with expensive passes. Look for a student/academic rate; otherwise treat it as a "where is this field heading" read.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=HICC+Novotel+Hitec+City+Hyderabad+500081">HICC / Novotel, HITEC City, Hyderabad 500081 — open in maps</a>
+        <a class="go" href="https://www.bioasia.in">Registration &amp; passes ›</a>
+      </div>
+    </div>
+  </div>
+  <div class="stgroup g-mix">Science culture &amp; festivals <span class="gc">meet ambitious peers</span></div>
+  <div class="grid">
+    <div class="card mix" data-subj="mix">
+      <p class="c-name">India Science Festival</p>
+      <div class="chips"><span class="chip when">~Jan 2027 (2026 was Jan 10–11)</span><span class="chip free">FREE</span><span class="chip city">IISER Pune</span></div>
+      <p class="c-lead">A two-day public science festival (~25,000 attendees, 60+ speakers) with talks and fireside chats on physics, space, quantum computing, chemistry, maths — and AI.</p>
+      <p class="c-why"><b>One of the most worthwhile trips on this list</b> — free, top speakers, squarely across your interests. Watch for the Jan 2027 dates.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=IISER+Pune+Pashan+411008">IISER Pune, Dr Homi Bhabha Rd, Pashan, Pune 411008 — open in maps</a>
+        <a class="go" href="https://indiasciencefest.org">Dates &amp; passes ›</a>
+      </div>
+    </div>
+    <div class="card mix" data-subj="mix">
+      <p class="c-name">Techfest, IIT Bombay</p>
+      <div class="chips"><span class="chip when">Late Dec 2026 (2025 was Dec 22–24)</span><span class="chip free">Free–visitor pass</span><span class="chip city">Mumbai</span></div>
+      <p class="c-lead">Asia's largest science-and-technology festival — exhibitions, competitions, workshops and a lecture series that has hosted the likes of Andrew Ng and Vint Cerf.</p>
+      <p class="c-why"><b>The densest gathering of ambitious student builders</b> in the country. Open to visitors; register early.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=IIT+Bombay+Powai+Mumbai+400076">IIT Bombay, Powai, Mumbai 400076 — open in maps</a>
+        <a class="go" href="https://techfest.org">Dates &amp; passes ›</a>
+      </div>
+    </div>
+    <div class="card mix" data-subj="mix">
+      <p class="c-name">Shaastra, IIT Madras</p>
+      <div class="chips"><span class="chip when">Early Jan 2027</span><span class="chip free">Many events free · some paid</span><span class="chip city">Chennai</span></div>
+      <p class="c-lead">The student-run tech festival — themed summits, workshops, hackathons and a Spotlight Lecture Series with speakers from academia, industry and the sciences.</p>
+      <p class="c-why">Big, rigorous and student-led; pairs naturally with a Chennai leg in early January.</p>
+      <div class="c-where">
+        <a class="addr" href="https://www.google.com/maps/search/?api=1&query=IIT+Madras+Adyar+Chennai+600036">IIT Madras, Adyar, Chennai 600036 — open in maps</a>
+        <a class="go" href="https://shaastra.org">Programme &amp; passes ›</a>
+      </div>
+    </div>
+    <div class="card mix" data-subj="mix">
+      <p class="c-name">India International Science Festival</p>
+      <div class="chips"><span class="chip when">~Oct–Dec 2026 · city TBA</span><span class="chip free">FREE</span><span class="chip city">host city changes</span></div>
+      <p class="c-lead">The government's mega science festival — hundreds of exhibits, talks and competitions across many science themes. The 11th edition was in Panchkula, Dec 2025.</p>
+      <p class="c-why">Huge and free, but the host city changes each year — check the next edition's location before planning travel.</p>
+      <div class="c-where">
+        <a class="go" href="https://www.scienceindiafest.org">Next edition &amp; host city ›</a>
+      </div>
+    </div>
+  </div>
+  <div class="stgroup g-cross">Cross-field, AI &amp; engineering <span class="gc">one small strand</span></div>
+  <div class="grid">
+    <div class="card cross" data-subj="cross">
+      <p class="c-name">The big AI conferences</p>
+      <div class="chips"><span class="chip when">DataHack Aug 5–8 · Fifth Elephant ~Jul · PyCon ~Sep–Oct</span><span class="chip paid">DataHack ≈₹15k+ · Fifth El ≈₹3–8k · PyCon ≈₹3–6k</span><span class="chip city">Bangalore / rotating</span></div>
+      <p class="c-lead">DataHack Summit (Aug, Bengaluru — premium ticket), The Fifth Elephant (~July, Bengaluru — community-priced), and PyCon India (~Sept–Oct, rotating — student discounts) are the AI/data events worth knowing. Amounts are approximate; confirm on each page.</p>
+      <p class="c-why">Useful once you're building with AI, but not a priority over the free physics and biology above. Go if a topic or speaker is a strong match.</p>
+      <div class="c-where">
+        <a class="go" href="https://www.analyticsvidhya.com/datahacksummit">DataHack · hasgeek.com · in.pycon.org ›</a>
+      </div>
+    </div>
+    <div class="card cross" data-subj="cross">
+      <p class="c-name">IIT technical fests (nationwide)</p>
+      <div class="chips"><span class="chip when">Kshitij Jan · Cognizance/Techkriti Mar · Techniche Aug–Sep</span><span class="chip free">Free–varies</span><span class="chip city">Kgp · Roorkee · Kanpur · Guwahati</span></div>
+      <p class="c-lead">Kshitij (IIT Kharagpur, Jan), Cognizance (IIT Roorkee, ~Mar), Techkriti (IIT Kanpur, ~Mar) and Techniche (IIT Guwahati, ~Aug–Sep) — each a large technical fest with competitions, workshops and expert lectures.</p>
+      <p class="c-why">Catch whichever falls nearest your dates or a city you're already visiting.</p>
+      <div class="c-where">
+        <a class="go" href="https://knowafest.com">Dates for all IIT fests ›</a>
+      </div>
+    </div>
+  </div>
+  <div class="note"><b>Beyond attending — apply to these.</b> Since you want to <i>do</i> research, look at the Indian Academy of Sciences <b>Summer Research Fellowship (SRFP)</b> and the summer / short-term programmes at CCMB, NCBS, IISc and the IISERs. Most target science undergrads, so check whether MBBS students are eligible — but even one such stint is worth more than a dozen talks.</div>
+  <div class="note warn"><b>What to skip, everywhere.</b> Ignore "conference-alert" listing sites pushing a generic "International Conference on Bioinformatics / Physics / AI" that rotates cities monthly — many are predatory, pay-to-publish, and worthless on a CV. Stick to events hosted directly by institutions (IISc, TIFR, NCBS, CCMB, IUCAA, IITs, IISERs) or known communities. And skip pure business-networking mixers.</div>
+</section>
+<div class="foot"><b>Prices are approximate and dates shift</b> — recurring lectures post their next speaker ~2 weeks ahead, and the big annual festivals hadn't published 2026–27 dates at the time of writing, so confirm each on its own page before you travel. Verified against institute and organiser calendars, July 2026.</div>
+</div>
+<script>
+(function(){
+  var tb=document.getElementById('themeBtn');
+  tb.addEventListener('click',function(){
+    document.body.classList.toggle('dark');
+    tb.textContent=document.body.classList.contains('dark')?'Light':'Theme';
+  });
+  var tabs=document.querySelectorAll('.tab');
+  var views=document.querySelectorAll('.view');
+  tabs.forEach(function(t){
+    t.addEventListener('click',function(){
+      tabs.forEach(function(x){x.classList.remove('active');});
+      t.classList.add('active');
+      var v=t.getAttribute('data-view');
+      views.forEach(function(sec){sec.classList.toggle('active',sec.getAttribute('data-view')===v);});
+      window.scrollTo({top:0,behavior:'auto'});
+    });
+  });
+  var fbtns=document.querySelectorAll('.fbtn');
+  fbtns.forEach(function(b){
+    b.addEventListener('click',function(){
+      fbtns.forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');
+      var f=b.getAttribute('data-filter');
+      document.querySelectorAll('.card').forEach(function(c){
+        var s=c.getAttribute('data-subj');
+        c.classList.toggle('hide',!(f==='all'||s===f));
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

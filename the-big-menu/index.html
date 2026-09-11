@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Big Menu — 26 things to build at home that do what you tell them</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&amp;display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#FCFCF9;
+    --grid:#E3EBF2;
+    --ink:#14213D;
+    --muted:#5B6B7F;
+    --rule:#DDE4EC;
+    --card:#FFFFFF;
+    --kraft:#EAD9BB;
+    --kraft-ink:#4A3A22;
+    --hi:#FFE9A3;
+    --link:#1B4F9C;
+    --tape-easy:#A9E3A2;
+    --tape-easymed:#D5EA84;
+    --tape-medium:#FFD66B;
+    --tape-hard:#FFA36C;
+    --tape-veryhard:#F97C7C;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    color:var(--ink);
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size:24px 24px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",sans-serif;
+    font-size:17px;
+    line-height:1.55;
+  }
+  .display{font-family:"Architects Daughter","Marker Felt","Segoe Print","Bradley Hand",sans-serif}
+  main{max-width:720px;margin:0 auto;padding:22px 16px 80px}
+  a{color:var(--link)}
+  a:focus-visible,button:focus-visible{outline:3px solid #7FB3FF;outline-offset:2px}
+
+  /* Header */
+  header h1{
+    font-family:"Architects Daughter","Marker Felt","Segoe Print","Bradley Hand",sans-serif;
+    font-size:38px;line-height:1.1;margin:8px 0 6px;letter-spacing:.01em;
+  }
+  header .sub{font-size:19px;margin:0 0 10px}
+  header .rules{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:12px 14px;margin:14px 0 0}
+  header .rules p{margin:0 0 8px}
+  header .rules p:last-child{margin:0}
+
+  /* Legend */
+  .legend{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:14px 0 4px;font-size:14px;color:var(--muted)}
+  .swatch{display:inline-block;width:26px;height:12px;border-radius:2px;vertical-align:middle;margin-right:5px;transform:rotate(-2deg);box-shadow:0 1px 1px rgba(0,0,0,.12)}
+  .s-easy{background:var(--tape-easy)} .s-easymed{background:var(--tape-easymed)} .s-medium{background:var(--tape-medium)} .s-hard{background:var(--tape-hard)} .s-veryhard{background:var(--tape-veryhard)}
+
+  /* Filters */
+  .filters{position:sticky;top:0;z-index:5;background:rgba(252,252,249,.94);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+    margin:16px -16px 8px;padding:10px 16px;border-bottom:1px solid var(--rule);display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .filters::-webkit-scrollbar{display:none}
+  .chip{flex:0 0 auto;border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:7px 13px;font:600 14px/1 inherit;font-family:inherit;cursor:pointer}
+  .chip[aria-pressed="true"]{background:var(--ink);color:#fff}
+  .count{font-size:14px;color:var(--muted);margin:2px 0 0}
+
+  /* At a glance */
+  .glance{background:var(--card);border:1px solid var(--rule);border-radius:10px;padding:8px 14px 10px;margin:14px 0 26px}
+  .glance h2{margin:8px 0 6px}
+  .glance ol{list-style:none;margin:0;padding:0;columns:1}
+  .glance li{display:flex;gap:8px;align-items:baseline;padding:6px 0;border-top:1px dashed var(--rule)}
+  .glance li:first-child{border-top:0}
+  .glance .n{font-family:"Architects Daughter","Marker Felt","Segoe Print",sans-serif;font-size:17px;min-width:26px;color:var(--muted)}
+  .glance a{text-decoration:none;color:var(--ink);font-weight:600;flex:1}
+  .glance a:hover{text-decoration:underline}
+  .glance .lv{display:inline-block;width:14px;height:8px;border-radius:2px;transform:rotate(-2deg);margin-right:6px;vertical-align:middle}
+  .glance .meta{font-size:13px;color:var(--muted);white-space:nowrap}
+  @media (min-width:600px){.glance ol{columns:2;column-gap:28px} .glance li{break-inside:avoid}}
+
+  /* Sections */
+  h2{
+    font-family:"Architects Daughter","Marker Felt","Segoe Print","Bradley Hand",sans-serif;
+    font-size:27px;line-height:1.2;margin:34px 0 4px;
+  }
+  h2 span{background:linear-gradient(transparent 58%, var(--hi) 58%);padding:0 4px}
+  .lede{margin:0 0 6px;color:var(--muted)}
+
+  /* Cards */
+  .card{
+    position:relative;background:var(--card);border:1px solid var(--rule);border-radius:12px;
+    padding:20px 16px 14px;margin:24px 0;
+    box-shadow:0 2px 0 var(--rule),0 10px 22px rgba(20,33,61,.06);
+  }
+  .card[hidden]{display:none}
+  .tape{
+    position:absolute;top:-11px;left:16px;padding:4px 12px;border-radius:2px;
+    font:700 11.5px/1.2 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;letter-spacing:.09em;text-transform:uppercase;color:#1F2A1F;
+    transform:rotate(-2deg);box-shadow:0 1px 2px rgba(0,0,0,.14);opacity:.94;
+  }
+  .t-easy{background:var(--tape-easy)} .t-easymed{background:var(--tape-easymed)} .t-medium{background:var(--tape-medium)} .t-hard{background:var(--tape-hard)} .t-veryhard{background:var(--tape-veryhard)}
+  .card h3{margin:6px 0 10px;font-size:21px;line-height:1.25;display:flex;gap:10px;align-items:baseline}
+  .card h3 .num{font-family:"Architects Daughter","Marker Felt","Segoe Print",sans-serif;font-size:22px;color:var(--muted);font-weight:400;min-width:28px}
+  .cost{display:inline-block;background:var(--kraft);color:var(--kraft-ink);font-size:13px;font-weight:700;padding:2px 9px;border-radius:999px;margin-left:auto;white-space:nowrap;letter-spacing:.01em}
+  .line{margin:0 0 9px}
+  .line b{display:block;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:1px}
+  .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--rule)}
+  .btn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:8px 12px;font-size:14px;font-weight:600;background:#fff}
+  .btn:hover{background:#EAF2FA}
+  .btn small{font-weight:500;color:var(--muted)}
+
+  /* Lists in tail sections */
+  .plain{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:14px 16px;margin:14px 0}
+  .plain ul{margin:6px 0 0;padding-left:20px}
+  .plain li{margin:0 0 9px}
+  .plain li:last-child{margin:0}
+  dl.gloss{margin:6px 0 0}
+  dl.gloss dt{font-weight:700;margin-top:9px}
+  dl.gloss dd{margin:0}
+  .foot{margin:40px 0 0;color:var(--muted);font-size:14px}
+  .totop{position:fixed;right:14px;bottom:14px;z-index:6;background:var(--ink);color:#fff;text-decoration:none;border-radius:999px;padding:10px 14px;font-size:14px;font-weight:600;box-shadow:0 6px 16px rgba(20,33,61,.25)}
+
+  /* Verdict buttons on each card */
+  .choices{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:12px;padding-top:12px;border-top:1px dashed var(--rule)}
+  .choice{border:1.5px solid var(--rule);background:#fff;border-radius:9px;padding:9px 4px 8px;font-family:inherit;font-size:13px;font-weight:700;line-height:1.1;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+  .choice .ic{font-size:15px;line-height:1}
+  .choice:hover{background:#F3F6FA}
+  .choice[aria-pressed="true"]{color:#fff;border-color:transparent}
+  .c-agreed[aria-pressed="true"]{background:#2E9E5B}
+  .c-nope[aria-pressed="true"]{background:#C94C4C}
+  .c-modify[aria-pressed="true"]{background:#D99A00}
+  .c-what[aria-pressed="true"]{background:#7B5CD6}
+  .card[data-pick="agreed"]{border-color:#7FCB9C}
+  .card[data-pick="nope"]{border-color:#E7A3A3}
+  .card[data-pick="modify"]{border-color:#EFC96A}
+  .card[data-pick="what"]{border-color:#BFAEEE}
+  .stamp{position:absolute;top:-12px;right:14px;background:#fff;font-family:"Architects Daughter","Marker Felt","Segoe Print",sans-serif;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:2px solid;border-radius:4px;padding:2px 7px;transform:rotate(3deg)}
+  .stamp[hidden]{display:none}
+  .st-agreed{color:#1F7F45;border-color:#1F7F45}
+  .st-nope{color:#B23A3A;border-color:#B23A3A}
+  .st-modify{color:#9A6B00;border-color:#C48A00}
+  .st-what{color:#5B3FB8;border-color:#5B3FB8}
+  .chip.picks{border-style:dashed}
+
+  /* The four columns */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+  @media (min-width:720px){.cols{grid-template-columns:repeat(4,1fr)}}
+  .col{background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:12px 12px 10px;border-top-width:6px;border-top-style:solid;min-height:120px}
+  .col-agreed{border-top-color:#2E9E5B} .col-nope{border-top-color:#C94C4C} .col-modify{border-top-color:#D99A00} .col-what{border-top-color:#7B5CD6}
+  .col h3{margin:0 0 6px;font-size:16px;display:flex;justify-content:space-between;align-items:baseline}
+  .col .cnt{font-family:"Architects Daughter","Marker Felt","Segoe Print",sans-serif;font-size:20px;color:var(--muted);font-weight:400}
+  .col ol{list-style:none;margin:0;padding:0}
+  .col li{padding:8px 0;border-top:1px dashed var(--rule)}
+  .col li a{text-decoration:none;color:var(--ink);font-weight:600;display:block;font-size:15px;line-height:1.3}
+  .col li a:hover{text-decoration:underline}
+  .col li small{display:block;color:var(--muted);font-weight:500;font-size:12px;margin-top:2px}
+  .col .lv{display:inline-block;width:14px;height:8px;border-radius:2px;transform:rotate(-2deg);margin-right:6px;vertical-align:middle}
+  .col input{width:100%;margin-top:6px;border:1px solid var(--rule);border-radius:6px;padding:7px 8px;font-family:inherit;font-size:14px;color:var(--ink);background:#FCFCF9}
+  .col .empty{color:var(--muted);font-size:13px;margin:6px 0 0}
+  .col .empty[hidden]{display:none}
+  .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .act{border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:999px;padding:10px 16px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer}
+  .act.primary{background:var(--ink);color:#fff}
+  #summary{width:100%;min-height:150px;margin-top:10px;font-family:ui-monospace,Menlo,Consolas,"Roboto Mono",monospace;font-size:13px;line-height:1.45;border:1px solid var(--rule);border-radius:8px;padding:8px;background:#fff;color:var(--ink)}
+  #summary[hidden]{display:none}
+
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+  @media print{
+    body{background:#fff}
+    .filters,.totop,.choices,.actions,#summary{display:none}
+    .card{break-inside:avoid;box-shadow:none}
+    .cols{grid-template-columns:repeat(4,1fr)}
+    a{color:inherit}
+    .btn{border-color:#999}
+  }
+</style>
+</head>
+<body>
+<main>
+
+<header>
+  <h1>The Big Menu</h1>
+  <p class="sub">26 things you can build at home in a week that <em>do what you tell them</em>. Written for someone starting from zero.</p>
+  <div class="rules">
+    <p><strong>The rules of the game.</strong> You buy only ingredients — motors, batteries, wire, syringes, a few ₹10 electronic parts. Everything else you make.</p>
+    <p><strong>Every card has the same six lines:</strong> what it does · how you control it · what it's made from and the cost · the tricky bit (that's where the learning is) · what you'll be able to explain afterwards · and buttons that open fresh <strong>videos</strong>, <strong>photos</strong>, <strong>how-to guides</strong> and <strong>the idea behind it</strong>.</p>
+    <p>Any word in brackets is the proper name for the plain thing before it. There's a glossary at the bottom.</p>
+    <p><strong>Give your verdict.</strong> Under every card are four buttons — <strong>Agreed</strong>, <strong>Nope</strong>, <strong>Modify</strong>, <strong>What!!</strong>. Tap one and a <em>copy</em> of that card lands in the matching column at the bottom of the page; the original stays put. Tap the same button again to clear it; tap a different one and the copy moves. When you're done, hit <em>Copy my picks as text</em> at the bottom and paste it into the chat.</p>
+  </div>
+  <div class="legend" aria-label="Level colours">
+    <span>The tape colour is the level:</span>
+    <span><i class="swatch s-easy"></i>Easy</span>
+    <span><i class="swatch s-easymed"></i>Easy–Medium</span>
+    <span><i class="swatch s-medium"></i>Medium</span>
+    <span><i class="swatch s-hard"></i>Hard</span>
+    <span><i class="swatch s-veryhard"></i>Very hard</span>
+  </div>
+</header>
+
+<div class="filters" role="toolbar" aria-label="Filter ideas">
+  <button class="chip" data-filter="all" aria-pressed="true">All 26</button>
+  <button class="chip" data-filter="mech" aria-pressed="false">No electricity</button>
+  <button class="chip" data-filter="fluid" aria-pressed="false">Air &amp; water</button>
+  <button class="chip" data-filter="elec" aria-pressed="false">Electricity</button>
+  <button class="chip" data-filter="easyish" aria-pressed="false">Easy-ish</button>
+  <button class="chip" data-filter="free" aria-pressed="false">Free (₹0)</button>
+  <button class="chip picks" id="picksChip" type="button" title="Jump to your picks">Picks 0/26 ↓</button>
+</div>
+<p class="count" id="count"></p>
+
+<section class="glance" id="glance">
+  <h2><span>At a glance</span></h2>
+  <ol>
+    <li><span class="n">1</span><a href="#i1"><i class="lv s-easy"></i>Copying drawing arm</a><span class="meta">Easy · ₹0</span></li>
+    <li><span class="n">2</span><a href="#i2"><i class="lv s-easymed"></i>One-finger crane</a><span class="meta">Easy–Med · ₹0</span></li>
+    <li><span class="n">3</span><a href="#i3"><i class="lv s-easy"></i>Grabber claw on a stick</a><span class="meta">Easy · ₹0</span></li>
+    <li><span class="n">4</span><a href="#i4"><i class="lv s-medium"></i>Robot hand that copies yours</a><span class="meta">Medium · ₹0</span></li>
+    <li><span class="n">5</span><a href="#i5"><i class="lv s-easymed"></i>Aiming catapult with a dial</a><span class="meta">Easy–Med · ₹0</span></li>
+    <li><span class="n">6</span><a href="#i6"><i class="lv s-medium"></i>Cam-programmed car</a><span class="meta">Medium · ₹0</span></li>
+    <li><span class="n">7</span><a href="#i7"><i class="lv s-medium"></i>Cam automaton</a><span class="meta">Medium · ₹0</span></li>
+    <li><span class="n">8</span><a href="#i8"><i class="lv s-hard"></i>Walking machine</a><span class="meta">Hard · ₹0–150</span></li>
+    <li><span class="n">9</span><a href="#i9"><i class="lv s-easymed"></i>Logic lock (AND/OR box)</a><span class="meta">Easy–Med · ₹0</span></li>
+    <li><span class="n">10</span><a href="#i10"><i class="lv s-medium"></i>Combination lock</a><span class="meta">Medium · ₹0</span></li>
+    <li><span class="n">11</span><a href="#i11"><i class="lv s-hard"></i>Coin-counting candy machine</a><span class="meta">Hard · ₹0</span></li>
+    <li><span class="n">12</span><a href="#i12"><i class="lv s-hard"></i>Marble adding machine</a><span class="meta">Hard · ₹0–200</span></li>
+    <li><span class="n">13</span><a href="#i13"><i class="lv s-easymed"></i>Self-filling water bowl</a><span class="meta">Easy–Med · ₹0–50</span></li>
+    <li><span class="n">14</span><a href="#i14"><i class="lv s-medium"></i>Hydraulic arm (physics version)</a><span class="meta">Medium · ~₹150</span></li>
+    <li><span class="n">15</span><a href="#i15"><i class="lv s-medium"></i>Soft robot gripper</a><span class="meta">Medium · ~₹50</span></li>
+    <li><span class="n">16</span><a href="#i16"><i class="lv s-medium"></i>Hovercraft</a><span class="meta">Medium · ₹0–100</span></li>
+    <li><span class="n">17</span><a href="#i17"><i class="lv s-easy"></i>Wired joystick rover</a><span class="meta">Easy · ~₹250</span></li>
+    <li><span class="n">18</span><a href="#i18"><i class="lv s-easymed"></i>Electric buzzer you build</a><span class="meta">Easy–Med · ~₹150</span></li>
+    <li><span class="n">19</span><a href="#i19"><i class="lv s-easymed"></i>Electromagnet crane</a><span class="meta">Easy–Med · ~₹150</span></li>
+    <li><span class="n">20</span><a href="#i20"><i class="lv s-medium"></i>Telegraph → homemade relay</a><span class="meta">Medium · ~₹200</span></li>
+    <li><span class="n">21</span><a href="#i21"><i class="lv s-medium"></i>Line follower</a><span class="meta">Medium · ~₹250</span></li>
+    <li><span class="n">22</span><a href="#i22"><i class="lv s-medium"></i>Torch-steered robot</a><span class="meta">Medium · ~₹250</span></li>
+    <li><span class="n">23</span><a href="#i23"><i class="lv s-medium"></i>Back-and-forth string shuttle</a><span class="meta">Medium · ~₹250</span></li>
+    <li><span class="n">24</span><a href="#i24"><i class="lv s-hard"></i>Bumper-reflex robot</a><span class="meta">Hard · ~₹300</span></li>
+    <li><span class="n">25</span><a href="#i25"><i class="lv s-hard"></i>Clap-controlled machine</a><span class="meta">Hard · ~₹150</span></li>
+    <li><span class="n">26</span><a href="#i26"><i class="lv s-veryhard"></i>Copycat knob (a servo from scratch)</a><span class="meta">Very hard · ~₹200</span></li>
+  </ol>
+</section>
+
+<section class="plain" id="salvage">
+  <h2 style="margin-top:0"><span>Day 0 for every idea: the salvage hunt</span></h2>
+  <p>Free parts are hiding in the house. <strong>Broken toy cars</strong> are the jackpot: motors, gearboxes, wheels, sometimes a working remote-control board. <strong>Old CD/DVD drives</strong> give small motors (the tray motor), gears and a sliding rail. <strong>Dead printers</strong> give gears, steel rods and belts. Also check battery fans, electric toothbrushes, phone vibration motors, and an old cordless drill (strong motor + gearbox + battery). Old transformers and relays contain thin copper wire you can unwind.</p>
+  <p><strong>Safety, non-negotiable:</strong> battery power only, never the wall socket. Avoid loose lithium cells pulled from laptop packs; use AA cells. Hot glue burns, blades cut — the boring stuff.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=salvage+motors+gears+from+old+toys+printers+dvd+drive">▶ Videos <small>salvaging parts</small></a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=parts+inside+broken+toy+car+motor+gearbox">🖼 Photos <small>what's inside toys</small></a>
+  </div>
+</section>
+
+<!-- ============ A. NO ELECTRICITY ============ -->
+<section class="group" id="secA">
+<h2><span>A. No electricity at all</span></h2>
+<p class="lede">Cardboard, sticks, string, marbles, water. The "brain" is a shape you cut or a lever you place.</p>
+
+<article class="card" id="i1" data-section="mech" data-level="easy" data-free="1">
+  <span class="tape t-easy">Easy</span>
+  <h3><span class="num">1</span>Copying drawing arm <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>You draw a small shape; the arm draws the same shape twice as big beside it. (A pantograph.)</p>
+  <p class="line"><b>You control it by</b>Your hand.</p>
+  <p class="line"><b>Made from</b>4 ice-cream sticks, 4 pins, a pencil, tape.</p>
+  <p class="line"><b>Tricky bit</b>The four sticks must form a perfect stretchy rectangle (a parallelogram) — pins loose enough to swing, tight enough not to wobble.</p>
+  <p class="line"><b>Afterwards you can explain</b>How linkages copy and scale motion — the trick inside drafting machines and engraving tools.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=DIY+pantograph+drawing+popsicle+sticks">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=pantograph+drawing+tool+homemade">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+pantograph+at+home">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pantograph">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i2" data-section="mech" data-level="easymed" data-free="1">
+  <span class="tape t-easymed">Easy–Medium</span>
+  <h3><span class="num">2</span>One-finger crane <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>A hand-cranked crane that lifts a brick or a full water bottle with one finger's effort, because you built a chain of small-wheel-drives-big-wheel steps (a gear or pulley reduction).</p>
+  <p class="line"><b>You control it by</b>A crank.</p>
+  <p class="line"><b>Made from</b>Cardboard, skewers, bottle caps as pulleys with rubber bands (or cardboard gears with toothpick teeth), string.</p>
+  <p class="line"><b>Tricky bit</b>Wheels that don't slip or jam. And feeling the trade in your hand: five turns of the crank for one turn of the drum — easy but slow.</p>
+  <p class="line"><b>Afterwards you can explain</b>Mechanical advantage and gear ratios — why a bicycle has gears.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=cardboard+crane+gears+DIY">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=cardboard+gear+crane+homemade">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+cardboard+gears+that+work">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Mechanical_advantage">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i3" data-section="mech" data-level="easy" data-free="1">
+  <span class="tape t-easy">Easy</span>
+  <h3><span class="num">3</span>Grabber claw on a stick <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>Squeeze a handle; a claw a metre away closes and picks up a sock (a linkage gripper, like a shopkeeper's reach-extender).</p>
+  <p class="line"><b>You control it by</b>A squeeze trigger.</p>
+  <p class="line"><b>Made from</b>A long cardboard tube or stick, string or stiff wire, ice-cream-stick fingers, a rubber band to open.</p>
+  <p class="line"><b>Tricky bit</b>Making the fingers close together, not one at a time.</p>
+  <p class="line"><b>Afterwards you can explain</b>Levers, and how pulling one thing can move several things.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=DIY+grabber+claw+cardboard">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=homemade+grabber+reacher+tool+cardboard">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+grabber+claw+at+home">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Lever">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i4" data-section="mech" data-level="medium" data-free="1">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">4</span>Robot hand that copies yours <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>A cardboard-and-straw hand with strings inside each finger, like tendons. Tie the other ends to a glove on your hand: curl your fingers and it curls its fingers.</p>
+  <p class="line"><b>You control it by</b>Wearing the glove.</p>
+  <p class="line"><b>Made from</b>Cardboard, drinking straws cut into finger segments, string, an old glove, rubber bands to straighten.</p>
+  <p class="line"><b>Tricky bit</b>String routing — every corner adds friction. The thumb is the boss fight: it must swing sideways to meet the fingers.</p>
+  <p class="line"><b>Afterwards you can explain</b>How your own hand works (the muscles are in your forearm; tendons pull the fingers) and what "teleoperation" means.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=cardboard+robotic+hand+straws+string">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=cardboard+robot+hand+straws+string">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+robotic+hand+with+straws+and+string">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Teleoperation">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i5" data-section="mech" data-level="easymed" data-free="1">
+  <span class="tape t-easymed">Easy–Medium</span>
+  <h3><span class="num">5</span>Aiming catapult with a dial <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>You say "hit the cup at 2 metres." You check your own chart, set the dial (angle or pull-back), fire, and hit it. The machine is simple; the engineering is the chart you build by testing.</p>
+  <p class="line"><b>You control it by</b>Naming the target and dialling it in.</p>
+  <p class="line"><b>Made from</b>Ice-cream sticks, rubber bands, a spoon, a cardboard base with a marked scale.</p>
+  <p class="line"><b>Tricky bit</b>Consistency — if it throws differently every time, no chart can save you. Curing the wobble is the lesson.</p>
+  <p class="line"><b>Afterwards you can explain</b>Calibration (turning a rough machine into a precise one by measuring) and how thrown things fly.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=popsicle+stick+catapult+accuracy+science+project">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=popsicle+stick+catapult+adjustable">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+an+accurate+popsicle+stick+catapult">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Calibration">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i6" data-section="mech" data-level="medium" data-free="1">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">6</span>Cam-programmed car <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>A car with no remote and no electronics that drives a route you designed in advance — an S, a square, a figure-8. A bumpy disc turning with the wheels (a cam) nudges the steering as it goes round; the bumps <em>are</em> the program.</p>
+  <p class="line"><b>You control it by</b>Cutting a new disc for a new route.</p>
+  <p class="line"><b>Made from</b>Cardboard, skewers, straws, bottle-cap wheels, a rubber band or a salvaged toy motor.</p>
+  <p class="line"><b>Tricky bit</b>The disc must turn slowly (one turn = the whole route), so you need a slow-down step between the wheels and the disc. Also floor grip.</p>
+  <p class="line"><b>Afterwards you can explain</b>Cams — how a shape can be a set of instructions, the way old washing-machine timers and music boxes were programmed.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=cardboard+cam+mechanism+car+steering">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=cam+and+follower+cardboard+mechanism">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+cam+mechanism+from+cardboard">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cam">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i7" data-section="mech" data-level="medium" data-free="1">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">7</span>Cam automaton <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>Turn a crank; a cardboard figure hammers, waves, nods — or a pen draws a repeating pattern — in an order you decided by shaping the discs.</p>
+  <p class="line"><b>You control it by</b>Designing the bumps.</p>
+  <p class="line"><b>Made from</b>Cardboard, skewers, a shoebox.</p>
+  <p class="line"><b>Tricky bit</b>Getting two or three motions to happen at the right moments relative to each other (timing).</p>
+  <p class="line"><b>Afterwards you can explain</b>How rotation becomes up-and-down motion, and the same "shape = program" idea as #6.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=cardboard+automata+cam">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=cardboard+automata">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+cardboard+automata">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Automaton">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i8" data-section="mech" data-level="hard" data-free="1">
+  <span class="tape t-hard">Hard</span>
+  <h3><span class="num">8</span>Walking machine <span class="cost">₹0–150</span></h3>
+  <p class="line"><b>Does</b>A four-legged machine that walks with legs, not wheels, when you crank it or attach a toy motor. Each leg is a set of connected sticks (a Klann linkage) that traces a foot-step shape.</p>
+  <p class="line"><b>You control it by</b>A crank or a switch.</p>
+  <p class="line"><b>Made from</b>Stiff cardboard or ice-cream sticks, pins/paper clips as joints, straws as sleeves, coat-hanger wire for the crank, hot glue.</p>
+  <p class="line"><b>Tricky bit</b>Precision — change one stick by 2 mm and the foot drags. Cardboard bends; joints must be free but firm.</p>
+  <p class="line"><b>Afterwards you can explain</b>Linkages, why proportions matter, and how one spinning shaft becomes a walking motion.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=Klann+linkage+cardboard+walker+DIY">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=Klann+linkage+walking+machine">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+build+a+Klann+linkage+walker+at+home">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Klann_linkage">💡 The idea</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.strandbeest.com/">🌊 Strandbeest <small>the famous ones</small></a>
+  </div>
+</article>
+
+<article class="card" id="i9" data-section="mech" data-level="easymed" data-free="1">
+  <span class="tape t-easymed">Easy–Medium</span>
+  <h3><span class="num">9</span>Logic lock (the AND/OR box) <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>A cardboard box that opens only when lever A AND lever B are both pulled — or, built differently, when A OR B is pulled — or only when a lever is NOT pulled. You're building the three basic decision-makers (logic gates) out of levers.</p>
+  <p class="line"><b>You control it by</b>Pulling the right levers.</p>
+  <p class="line"><b>Made from</b>Cardboard, skewers, rubber bands.</p>
+  <p class="line"><b>Tricky bit</b>Designing the AND: two levers that together move a bar far enough, but neither alone. Then chaining gates: (A AND B) OR C.</p>
+  <p class="line"><b>Afterwards you can explain</b>Logic gates — the atoms every computer is made of — and you'll have touched them.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=mechanical+logic+gates+cardboard">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=mechanical+logic+gate+model+levers">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+mechanical+AND+OR+gates+from+cardboard">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Logic_gate">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i10" data-section="mech" data-level="medium" data-free="1">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">10</span>Combination lock <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>Three cardboard discs on a shaft, each with one notch. Only when you dial the right code do all three notches line up under a bar; the bar drops in and the latch opens.</p>
+  <p class="line"><b>You control it by</b>A code you chose.</p>
+  <p class="line"><b>Made from</b>Cardboard discs, a skewer, a paper-clip bar, a box.</p>
+  <p class="line"><b>Tricky bit</b>The bar must fall only when <em>all</em> notches align — sloppy discs open for nearby codes too. That's tolerance.</p>
+  <p class="line"><b>Afterwards you can explain</b>How a real combination padlock works, and why precision equals security.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=cardboard+combination+lock+DIY">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=cardboard+combination+lock">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+combination+lock+from+cardboard">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Combination_lock">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i11" data-section="mech" data-level="hard" data-free="1">
+  <span class="tape t-hard">Hard</span>
+  <h3><span class="num">11</span>Coin-counting candy machine <span class="cost">₹0</span></h3>
+  <p class="line"><b>Does</b>Drop in a coin: a slot sized to the right coin lets it pass and drops wrong sizes into a reject tray. Each right coin pushes a lever that turns a toothed wheel one notch (a ratchet — a wheel that only turns one way). On the third notch, a pin releases the candy gate. Then it resets.</p>
+  <p class="line"><b>You control it by</b>Paying three coins.</p>
+  <p class="line"><b>Made from</b>Cardboard, skewers, rubber bands, paper clips.</p>
+  <p class="line"><b>Tricky bit</b>Three mechanisms that must all work — sorting by size, counting reliably, releasing once. Each is fine alone; together they fight.</p>
+  <p class="line"><b>Afterwards you can explain</b>Ratchets, counting mechanisms, sorting by geometry — the guts of vending machines and turnstiles.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=cardboard+vending+machine+coin+mechanism">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=cardboard+vending+machine+coin+mechanism">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+cardboard+vending+machine+that+counts+coins">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Ratchet_(device)">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i12" data-section="mech" data-level="hard" data-free="1">
+  <span class="tape t-hard">Hard</span>
+  <h3><span class="num">12</span>Marble adding machine <span class="cost">₹0–200</span></h3>
+  <p class="line"><b>Does</b>Little seesaws on a tilted board. A marble hitting a seesaw flips it: pointing left = 0, right = 1. Load two numbers as rows of marbles, pull a lever, and the seesaws end up showing the sum in binary. When a marble hits a seesaw already at 1, it flips back to 0 and rolls on to the next — that rolling-on is the carry, exactly like 1 + 1 = 10 in binary. Ask it 5 + 7; it shows 12.</p>
+  <p class="line"><b>You control it by</b>Loading numbers as marbles.</p>
+  <p class="line"><b>Made from</b>Foamboard, stiff cardboard or thin plywood, identical marbles, pins as pivots.</p>
+  <p class="line"><b>Tricky bit</b>One seesaw must flip 50 times out of 50 before you build the second. Friction and slightly different marble sizes will humble you.</p>
+  <p class="line"><b>Afterwards you can explain</b>Binary numbers and how a computer <em>physically</em> adds. Rare knowledge.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=binary+marble+adding+machine">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=binary+marble+adding+machine">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+build+a+binary+marble+adder">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://woodgears.ca/marbleadd/">🪵 The original <small>Wandel's machine</small></a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Digi-Comp_I">💡 Its programmable cousin</a>
+  </div>
+</article>
+
+<article class="card" id="i13" data-section="mech" data-level="easymed" data-free="1">
+  <span class="tape t-easymed">Easy–Medium</span>
+  <h3><span class="num">13</span>Self-filling water bowl <span class="cost">₹0–50</span></h3>
+  <p class="line"><b>Does</b>Like the tank behind a toilet: a bottle of water sits above a bowl; a floating cap on a lever squashes a soft tube shut when the water is high enough, and lets go when it drops. The bowl stays at the level you set — forever, with no electricity. Keeps a plant tray or a pet bowl topped up.</p>
+  <p class="line"><b>You control it by</b>Setting where the float sits.</p>
+  <p class="line"><b>Made from</b>A bottle, soft aquarium tubing (₹20), a bottle cap as the float, a lever, a bowl.</p>
+  <p class="line"><b>Tricky bit</b>The lever must squash the tube fully shut with only a float's push. Leverage!</p>
+  <p class="line"><b>Afterwards you can explain</b>Feedback control — the same idea as a thermostat and cruise control, done with a floating cap. The simplest real "controller" you can build.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=DIY+float+valve+automatic+water+bowl">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=float+valve+diagram+how+it+works">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+float+valve+at+home">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Ballcock">💡 The idea</a>
+  </div>
+</article>
+</section>
+
+<!-- ============ B. AIR & WATER ============ -->
+<section class="group" id="secB">
+<h2><span>B. Air and water</span></h2>
+<p class="lede">Syringes, tubes and balloons. Pushing with water gives force; pushing with air gives springiness.</p>
+
+<article class="card" id="i14" data-section="fluid" data-level="medium" data-free="0">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">14</span>Hydraulic arm, the physics version <span class="cost">~₹150</span></h3>
+  <p class="line"><b>Does</b>An arm with a turning base, shoulder, elbow and gripper, each moved by a pair of syringes joined by a tube of water. Push the small syringe; water pushes the big one — with <em>more</em> force but less travel. The challenge: choose syringe sizes on purpose (measure, predict, then test) so one finger's push lifts a 1 kg bottle.</p>
+  <p class="line"><b>You control it by</b>Your hands, remotely.</p>
+  <p class="line"><b>Made from</b>8 syringes in mixed sizes (pharmacy, ₹5–15 each), 3 m tubing, cardboard or ice-cream sticks, pins, rubber bands, glue.</p>
+  <p class="line"><b>Tricky bit</b>Air bubbles make joints spongy; leaks; and your first shoulder collapses under its own weight until you move its syringe farther from the joint (leverage again).</p>
+  <p class="line"><b>Afterwards you can explain</b>How hydraulics multiply force (the JCB principle), and torque.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=hydraulic+robotic+arm+syringes+DIY">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=syringe+hydraulic+arm+homemade">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+hydraulic+arm+with+syringes">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Pascal%27s_law">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i15" data-section="fluid" data-level="medium" data-free="0">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">15</span>Soft robot gripper <span class="cost">~₹50</span></h3>
+  <p class="line"><b>Does</b>Fingers made from long balloons (or the fingers of a rubber glove) with tape along one side. Push air in from a syringe and they curl, because the taped side can't stretch. Three of them around a ring make a hand that lifts an egg without breaking it. This is what soft-robotics labs build.</p>
+  <p class="line"><b>You control it by</b>A syringe of air.</p>
+  <p class="line"><b>Made from</b>Modelling balloons or a rubber glove, tape, straws, a syringe, rubber bands to seal.</p>
+  <p class="line"><b>Tricky bit</b>Sealing. Air escapes from everywhere.</p>
+  <p class="line"><b>Afterwards you can explain</b>Why air is springy and water isn't (pneumatic vs. hydraulic), and how a soft thing can grip a delicate thing.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=DIY+soft+robotic+gripper+balloon">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=soft+robotic+gripper+balloon+DIY">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+soft+robot+gripper+at+home">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Soft_robotics">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i16" data-section="fluid" data-level="medium" data-free="1">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">16</span>Hovercraft <span class="cost">₹0–100</span></h3>
+  <p class="line"><b>Does</b>A cardboard or foam disc with a plastic-bag skirt underneath and a fan blowing air into it. It floats a few millimetres off the floor and glides at a touch. Big enough to carry a book.</p>
+  <p class="line"><b>You control it by</b>A fan switch (steering is the upgrade: a second fan for push).</p>
+  <p class="line"><b>Made from</b>Cardboard or foam board, a plastic bag, tape, a salvaged battery fan or a computer fan (needs 8 AA cells in a row to make 12 V).</p>
+  <p class="line"><b>Tricky bit</b>The skirt — air must leak out evenly all round or it tips and scrapes.</p>
+  <p class="line"><b>Afterwards you can explain</b>Air cushions, and why pressure × area = lift.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=DIY+hovercraft+cardboard+plastic+bag+fan">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=homemade+hovercraft+plastic+bag+skirt">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+hovercraft+at+home+with+a+fan">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Hovercraft">💡 The idea</a>
+  </div>
+</article>
+</section>
+
+<!-- ============ C. ELECTRICITY ============ -->
+<section class="group" id="secC">
+<h2><span>C. Electricity — but you build the brain</span></h2>
+<p class="lede">No Arduino, no code. The brain is a switch you make, a coil you wind, or a ₹10 chip you wire by hand.</p>
+
+<article class="card" id="i17" data-section="elec" data-level="easy" data-free="0">
+  <span class="tape t-easy">Easy</span>
+  <h3><span class="num">17</span>Wired joystick rover <span class="cost">~₹250</span></h3>
+  <p class="line"><b>Does</b>A car on a wire tether. Two switches you make yourself from paper clips and thumbtacks; each flips one motor forward or backward. Both forward = straight; opposite = spins on the spot (tank steering).</p>
+  <p class="line"><b>You control it by</b>Your two homemade switches.</p>
+  <p class="line"><b>Made from</b>2 small geared motors + wheels (salvaged or ~₹150), a 4×AA holder, wire, paper clips, thumbtacks, cardboard.</p>
+  <p class="line"><b>Tricky bit</b>Making a switch that reverses a motor (you swap which wire touches plus and minus). Once you get it, it's a lightbulb moment.</p>
+  <p class="line"><b>Afterwards you can explain</b>Circuits, and why swapping the wires reverses a motor. Honestly the simplest electric project here — a good step before 21–24.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=wired+remote+control+car+cardboard+DIY+DPDT">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=DIY+wired+remote+control+car+cardboard">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+wired+remote+control+car+at+home">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/H-bridge">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i18" data-section="elec" data-level="easymed" data-free="0">
+  <span class="tape t-easymed">Easy–Medium</span>
+  <h3><span class="num">18</span>Electric buzzer you build <span class="cost">~₹150</span></h3>
+  <p class="line"><b>Does</b>A coil of wire around a nail (an electromagnet) next to a springy strip of tin. Press the button: the coil pulls the strip, which breaks its own connection, so the coil lets go, so the strip springs back and reconnects, so the coil pulls again — fifty times a second. It buzzes on its own. That's how doorbells worked for a century.</p>
+  <p class="line"><b>You control it by</b>A button.</p>
+  <p class="line"><b>Made from</b>Thin enamelled copper wire (~₹150 a spool, or unwind an old transformer), a nail, tin from a can, a wood or cardboard base, a battery.</p>
+  <p class="line"><b>Tricky bit</b>The gap — too big and it never pulls, too small and it sticks. And sanding the coating off the wire ends (everyone forgets).</p>
+  <p class="line"><b>Afterwards you can explain</b>Electromagnets, and how a machine can switch <em>itself</em> on and off — the first "automatic" machine.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=homemade+electric+bell+electromagnet">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=electric+bell+mechanism+diagram">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+an+electric+bell+at+home">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Electric_bell">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i19" data-section="elec" data-level="easymed" data-free="0">
+  <span class="tape t-easymed">Easy–Medium</span>
+  <h3><span class="num">19</span>Electromagnet crane <span class="cost">~₹150</span></h3>
+  <p class="line"><b>Does</b>Your one-finger crane from #2, but the hook is a nail wrapped in wire. Press the button: it grabs pins and paper clips. Release: it drops them. Sort a mixed pile into a tray.</p>
+  <p class="line"><b>You control it by</b>A button, and the crank.</p>
+  <p class="line"><b>Made from</b>The crane, a nail, magnet wire, a battery, a switch.</p>
+  <p class="line"><b>Tricky bit</b>Making it strong enough (hundreds of turns of wire) without draining the battery in a minute.</p>
+  <p class="line"><b>Afterwards you can explain</b>Electricity makes magnetism, and why more turns means stronger.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=electromagnet+crane+DIY">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=DIY+electromagnet+crane">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+an+electromagnetic+crane+at+home">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Electromagnet">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i20" data-section="elec" data-level="medium" data-free="0">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">20</span>Telegraph → homemade relay → remote motor <span class="cost">~₹200</span></h3>
+  <p class="line"><b>Does</b>First, a Morse key and a clicker (an electromagnet snapping a tin strip): talk between rooms in dots and dashes. Then the twist: let the electromagnet press a <em>second</em> switch that turns on a motor's separate, stronger circuit. You've built a relay — a switch that electricity presses instead of your finger — and controlled a motor in another room over one thin wire.</p>
+  <p class="line"><b>You control it by</b>Tapping Morse.</p>
+  <p class="line"><b>Made from</b>Magnet wire, nails, tin, wood or cardboard, battery, thin wire, a salvaged motor.</p>
+  <p class="line"><b>Tricky bit</b>A coil strong enough to snap the switch reliably; a spring to return it.</p>
+  <p class="line"><b>Afterwards you can explain</b>How a weak signal controls a strong machine — the core of all control, and the ancestor of the transistor.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=homemade+telegraph+electromagnet">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=homemade+relay+nail+coil">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+relay+at+home+with+a+nail+and+wire">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Relay">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i21" data-section="elec" data-level="medium" data-free="0">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">21</span>Line follower <span class="cost">~₹250</span></h3>
+  <p class="line"><b>Does</b>Two "eyes" (light sensors, LDRs) point at the floor, one each side, each with a small light. Over white floor an eye sees bright and switches its motor on; over black tape it sees dark and switches its motor off — so the car turns back toward the line. It follows any tape path you lay: loops, S-curves, a figure-8.</p>
+  <p class="line"><b>You control it by</b>Laying tape.</p>
+  <p class="line"><b>Made from</b>2 motors + wheels, 2 LDRs (₹10 each), 2 white LEDs, 2 transistors that can handle a motor (TIP122, ₹15 each), a few resistors, a knob resistor (potentiometer) for sensitivity, 2 diodes, battery holder, cardboard, black tape.</p>
+  <p class="line"><b>Tricky bit</b>Sunlight — it works at night and fails at breakfast until you shield the eyes.</p>
+  <p class="line"><b>Afterwards you can explain</b>The transistor as an electric switch, and the basic loop of all robotics: sense → decide → move → repeat.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=line+follower+robot+without+arduino+transistor+LDR">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=line+follower+robot+transistor+circuit">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+line+follower+robot+without+arduino">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Photoresistor">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i22" data-section="elec" data-level="medium" data-free="0">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">22</span>Torch-steered robot <span class="cost">~₹250</span></h3>
+  <p class="line"><b>Does</b>Same parts as #21, but the eyes point forward and the wires are <em>crossed</em>: left eye drives right motor. Shine a torch and it drives toward the beam. Uncross the wires and it runs away from light instead. Behaviour from wiring alone — no computer.</p>
+  <p class="line"><b>You control it by</b>A torch beam.</p>
+  <p class="line"><b>Made from</b>Same as #21, plus two straws so each eye only sees straight ahead.</p>
+  <p class="line"><b>Tricky bit</b>Balancing the two sides so it drives straight when both eyes see the same light.</p>
+  <p class="line"><b>Afterwards you can explain</b>How simple wiring can look like intelligence (Braitenberg vehicles). Build #21, convert to #22 in an afternoon.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=light+following+robot+LDR+transistor+DIY">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=Braitenberg+vehicle+robot">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+light+following+robot+without+arduino">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Braitenberg_vehicle">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i23" data-section="elec" data-level="medium" data-free="0">
+  <span class="tape t-medium">Medium</span>
+  <h3><span class="num">23</span>Back-and-forth string shuttle <span class="cost">~₹250</span></h3>
+  <p class="line"><b>Does</b>A little motorised carriage that rides a string stretched between two rooms. A bump switch at each end flips it into reverse automatically. It shuttles notes, snacks, or a bell that rings on arrival. Add a "hold" so it waits until you send it.</p>
+  <p class="line"><b>You control it by</b>Sending it.</p>
+  <p class="line"><b>Made from</b>1 motor + a pulley on the string, 2 small switches (₹20 each), a switch that stays flipped (a DPDT relay, ₹40) wired to remember its direction, battery, cardboard.</p>
+  <p class="line"><b>Tricky bit</b>Wiring the relay so it <em>remembers</em> which way it was going after the bump switch is released.</p>
+  <p class="line"><b>Afterwards you can explain</b>End-stops and latching — the logic inside every elevator, printer head and automatic gate.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=auto+reverse+motor+limit+switch+relay+circuit">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=DIY+cable+car+motor+string+carriage">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+motor+reverse+automatically+with+limit+switches+and+a+relay">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Limit_switch">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i24" data-section="elec" data-level="hard" data-free="0">
+  <span class="tape t-hard">Hard</span>
+  <h3><span class="num">24</span>Bumper-reflex robot <span class="cost">~₹300</span></h3>
+  <p class="line"><b>Does</b>Drives forward. A whisker touches the wall → it backs up and turns for about a second → carries on. Explores a room by itself. The "about a second" comes from a part that fills with charge like a tiny bucket (a capacitor) through a narrow pipe (a resistor): an egg-timer made of two ₹5 parts.</p>
+  <p class="line"><b>You control it by</b>Where you put the furniture — it drives itself.</p>
+  <p class="line"><b>Made from</b>2 motors, 2 small switches or homemade wire whiskers, a DPDT relay, a big capacitor, a transistor, resistors, battery, cardboard.</p>
+  <p class="line"><b>Tricky bit</b>Predicting the timer on paper, then finding out whether physics agrees; whiskers that reset.</p>
+  <p class="line"><b>Afterwards you can explain</b>Relays, timing with capacitors, and reflexes without a brain.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=obstacle+avoiding+robot+without+arduino+relay">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=BEAM+robot+bumper+whisker">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+an+obstacle+avoiding+robot+without+arduino">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/BEAM_robotics">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i25" data-section="elec" data-level="hard" data-free="0">
+  <span class="tape t-hard">Hard</span>
+  <h3><span class="num">25</span>Clap-controlled machine <span class="cost">~₹150</span></h3>
+  <p class="line"><b>Does</b>Clap: a fan, motor or car starts. Clap again: it stops. A microphone hears the clap, a ₹10 chip (the 555) turns the messy sound into one clean click, another chip remembers on/off and drives the motor.</p>
+  <p class="line"><b>You control it by</b>Clapping.</p>
+  <p class="line"><b>Made from</b>An electret mic (₹15), 2 small transistors, a 555 timer, a CD4017 chip, a relay or power transistor, capacitors, resistors, a motor, battery.</p>
+  <p class="line"><b>Tricky bit</b>The motor's own noise re-triggers the mic. You'll fight it (move the mic, add a capacitor) and win.</p>
+  <p class="line"><b>Afterwards you can explain</b>Amplifying tiny signals, timing, and how a circuit can <em>remember</em> — the seed of computer memory.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=clap+switch+circuit+555+CD4017">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=clap+switch+circuit+diagram+555">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+make+a+clap+switch+without+arduino">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/555_timer_IC">💡 The idea</a>
+  </div>
+</article>
+
+<article class="card" id="i26" data-section="elec" data-level="veryhard" data-free="0">
+  <span class="tape t-veryhard">Very hard</span>
+  <h3><span class="num">26</span>Copycat knob (a servo from scratch) <span class="cost">~₹200</span></h3>
+  <p class="line"><b>Does</b>Two knobs (potentiometers). Turn knob A by hand; a motor turns knob B until it matches. A "which is bigger?" chip (an op-amp, ₹15) compares the two and drives the motor toward agreement. This is exactly what every robot joint does.</p>
+  <p class="line"><b>You control it by</b>Turning a knob.</p>
+  <p class="line"><b>Made from</b>2 potentiometers (₹20 each), 1 LM358 op-amp, 4 transistors or a relay, a motor, battery.</p>
+  <p class="line"><b>Tricky bit</b>It overshoots and hunts back and forth around the target. Understanding <em>why</em> — and calming it — is the beginning of control engineering.</p>
+  <p class="line"><b>Afterwards you can explain</b>Feedback control, the thing that makes a machine follow a command instead of just running. Very hard for a beginner, but the single most valuable idea on this list.</p>
+  <div class="links">
+    <a class="btn" target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=DIY+servo+from+scratch+op+amp+potentiometer+motor">▶ Videos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?tbm=isch&amp;q=servo+position+control+op+amp+comparator+circuit">🖼 Photos</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://www.google.com/search?q=how+to+build+a+servo+motor+from+a+dc+motor+and+potentiometer">📖 How-to</a>
+    <a class="btn" target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Servomechanism">💡 The idea</a>
+  </div>
+</article>
+</section>
+
+<!-- ============ TAIL ============ -->
+<section id="warmups">
+<h2><span>Warm-ups: 30–60 minutes each, for a Day-1 win</span></h2>
+<div class="plain">
+  <ul>
+    <li><strong>Bristlebot.</strong> A toothbrush head + the tiny vibrating motor from an old phone or toy + a coin cell. It skitters. Shift the weight and it curves — your first "tuning." <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=bristlebot+toothbrush+DIY">▶ Videos</a></li>
+    <li><strong>Wind your own motor.</strong> 30 turns of thin wire, a fridge magnet, two safety pins, one AA cell. It spins. Settles forever what "motor" means. <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=simplest+homemade+electric+motor+safety+pins">▶ Videos</a></li>
+    <li><strong>Nail electromagnet.</strong> Wire around a nail + a battery lifts paper clips. Count turns vs. clips lifted and graph it. Feeds ideas 18, 19 and 20. <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=nail+electromagnet+paper+clips+experiment">▶ Videos</a></li>
+    <li><strong>Pencil speed dial.</strong> A thick 6B pencil stripe on paper is a resistor. Slide a wire along it and a small motor speeds up and slows down. <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=pencil+graphite+resistor+motor+speed+experiment">▶ Videos</a></li>
+  </ul>
+</div>
+</section>
+
+<section id="combos">
+<h2><span>Combos that stack</span></h2>
+<div class="plain">
+  <ul>
+    <li>Crane (2) → electromagnet crane (19).</li>
+    <li>Nail electromagnet warm-up → buzzer (18) → telegraph &amp; relay (20) → use <em>your</em> relay in the shuttle (23) or the bumper bot (24): a control system where nothing was bought ready-made.</li>
+    <li>Logic lock (9) → combination lock (10) → candy machine (11).</li>
+    <li>Wired rover (17) → line follower (21) → torch robot (22).</li>
+    <li>Cam car (6) + clap start (25).</li>
+  </ul>
+</div>
+</section>
+
+<section id="glossary">
+<h2><span>Plain-words glossary</span></h2>
+<div class="plain">
+  <dl class="gloss">
+    <dt>Motor</dt><dd>Turns electricity into spinning.</dd>
+    <dt>Battery</dt><dd>Pushes electricity round a loop; the push is called voltage.</dd>
+    <dt>Circuit</dt><dd>The loop. Break it anywhere and everything stops.</dd>
+    <dt>Switch</dt><dd>A gap you can close.</dd>
+    <dt>Resistor</dt><dd>A narrow pipe for electricity; slows the flow.</dd>
+    <dt>Potentiometer</dt><dd>A knob-shaped adjustable resistor.</dd>
+    <dt>Capacitor</dt><dd>A tiny bucket that stores charge and empties it later; the heart of simple timers.</dd>
+    <dt>Diode</dt><dd>A one-way valve for electricity; protects your parts from a motor's kick.</dd>
+    <dt>LDR</dt><dd>A resistor that changes with light — an "eye."</dd>
+    <dt>Transistor</dt><dd>A switch that a tiny current presses. Millions of these make a computer chip.</dd>
+    <dt>Relay</dt><dd>A switch that an electromagnet presses. The transistor's grandfather.</dd>
+    <dt>555 timer</dt><dd>A ₹10 chip that makes clean pulses and blinks; the most-built chip ever.</dd>
+    <dt>Op-amp</dt><dd>A chip that compares two voltages and says which is bigger.</dd>
+    <dt>Linkage</dt><dd>Sticks joined by pins so moving one moves the others in a designed way.</dd>
+    <dt>Cam</dt><dd>A bumpy wheel that pushes a follower as it turns; shape = instructions.</dd>
+    <dt>Gear ratio</dt><dd>How many turns in for one turn out; trades speed for force.</dd>
+    <dt>Hydraulic / pneumatic</dt><dd>Pushing with water / pushing with air.</dd>
+    <dt>Feedback</dt><dd>The machine checks the result and corrects itself. Float valve, thermostat, servo — same idea.</dd>
+  </dl>
+</div>
+</section>
+
+<section id="start">
+<h2><span>If you're totally lost, start with one of these</span></h2>
+<div class="plain">
+  <ul>
+    <li><strong>Zero electricity, real learning, high finish chance:</strong> <a href="#i5">5 aiming catapult</a>, <a href="#i13">13 self-filling bowl</a>, <a href="#i9">9 logic lock</a>.</li>
+    <li><strong>Electricity, gentle first step:</strong> <a href="#i17">17 wired rover</a>, then <a href="#i21">21 line follower</a>.</li>
+    <li><strong>Want to say "I built the parts too":</strong> <a href="#i18">18</a> → <a href="#i19">19</a> → <a href="#i20">20</a>.</li>
+  </ul>
+</div>
+<p class="foot">Costs are rough Indian shop prices and vary. The Videos / Photos / How-to buttons open live searches, so results stay fresh.</p>
+</section>
+
+<section id="columns">
+<h2><span>Your picks — four columns</span></h2>
+<p class="lede">Copies, not moves: the cards above stay where they are. Tap a title to jump back to it. Choose a different button on a card and its copy moves columns. Modify and What!! copies have a note box — say what to change, or what confused you.</p>
+<div class="cols">
+  <div class="col col-agreed" id="col-agreed"><h3>✓ Agreed <span class="cnt">0</span></h3><ol></ol><p class="empty">Nothing here yet.</p></div>
+  <div class="col col-nope" id="col-nope"><h3>✗ Nope <span class="cnt">0</span></h3><ol></ol><p class="empty">Nothing here yet.</p></div>
+  <div class="col col-modify" id="col-modify"><h3>✎ Modify <span class="cnt">0</span></h3><ol></ol><p class="empty">Nothing here yet.</p></div>
+  <div class="col col-what" id="col-what"><h3>?! What!! <span class="cnt">0</span></h3><ol></ol><p class="empty">Nothing here yet.</p></div>
+</div>
+<div class="actions">
+  <button type="button" id="copyBtn" class="act primary">Copy my picks as text</button>
+  <button type="button" id="resetBtn" class="act">Reset all</button>
+</div>
+<p class="foot" id="saveNote"></p>
+<textarea id="summary" hidden readonly aria-label="Your picks as text"></textarea>
+<p class="foot">Paste the copied text into the chat and I'll take it from there — a day-by-day for the Agreed ones, tweaks for Modify, plain answers for What!!.</p>
+</section>
+
+</main>
+<a class="totop" href="#glance">↑ Top</a>
+
+<script>
+(function(){
+  var LEVEL={easy:'Easy',easymed:'Easy–Med',medium:'Medium',hard:'Hard',veryhard:'Very hard'};
+  var CHOICES=[
+    {k:'agreed',label:'Agreed',icon:'✓'},
+    {k:'nope',label:'Nope',icon:'✗'},
+    {k:'modify',label:'Modify',icon:'✎'},
+    {k:'what',label:'What!!',icon:'?!'}
+  ];
+  var cards=Array.prototype.slice.call(document.querySelectorAll('.card'));
+  var chips=document.querySelectorAll('.chip[data-filter]');
+  var groups=document.querySelectorAll('section.group');
+  var count=document.getElementById('count');
+  var picksChip=document.getElementById('picksChip');
+  var copyBtn=document.getElementById('copyBtn');
+  var resetBtn=document.getElementById('resetBtn');
+  var ta=document.getElementById('summary');
+  var saveNote=document.getElementById('saveNote');
+
+  var state={picks:{},notes:{}};
+  var KEY='bim-picks-v1';
+  var hasStore=!!(window.storage&&window.storage.get&&window.storage.set);
+  var saveTimer=null;
+
+  /* ---- read each card's number, title, cost, level once ---- */
+  var META={};
+  cards.forEach(function(card){
+    var h=card.querySelector('h3').cloneNode(true);
+    var n=h.querySelector('.num'), c=h.querySelector('.cost');
+    var num=n?n.textContent.trim():'', cost=c?c.textContent.trim():'';
+    if(n)n.parentNode.removeChild(n);
+    if(c)c.parentNode.removeChild(c);
+    META[card.id]={id:card.id,num:num,title:h.textContent.trim(),cost:cost,level:card.dataset.level};
+  });
+
+  function esc(s){return String(s).replace(/[&<>"']/g,function(ch){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];});}
+  function choice(k){for(var i=0;i<CHOICES.length;i++){if(CHOICES[i].k===k)return CHOICES[i];}return null;}
+  function idsFor(k){
+    return Object.keys(state.picks).filter(function(id){return state.picks[id]===k&&META[id];})
+      .sort(function(a,b){return parseInt(META[a].num,10)-parseInt(META[b].num,10);});
+  }
+
+  /* ---- filters ---- */
+  function applyFilter(f){
+    var shown=0;
+    cards.forEach(function(card){
+      var ok=true;
+      if(f==='all')ok=true;
+      else if(f==='easyish')ok=(card.dataset.level==='easy'||card.dataset.level==='easymed');
+      else if(f==='free')ok=(card.dataset.free==='1');
+      else ok=(card.dataset.section===f);
+      card.hidden=!ok; if(ok)shown++;
+    });
+    groups.forEach(function(g){
+      var any=false; g.querySelectorAll('.card').forEach(function(c){ if(!c.hidden)any=true; });
+      g.hidden=!any;
+    });
+    count.textContent = f==='all' ? '' : 'Showing '+shown+' of 26';
+  }
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      chips.forEach(function(x){x.setAttribute('aria-pressed','false');});
+      c.setAttribute('aria-pressed','true');
+      applyFilter(c.dataset.filter);
+    });
+  });
+
+  /* ---- optional persistence (Claude artifact storage), silently skipped elsewhere ---- */
+  function save(){
+    if(!hasStore)return;
+    clearTimeout(saveTimer);
+    saveTimer=setTimeout(function(){
+      try{ var p=window.storage.set(KEY,JSON.stringify(state),false); if(p&&p.catch)p.catch(function(){}); }catch(e){}
+    },300);
+  }
+  function load(cb){
+    if(!hasStore){cb();return;}
+    try{
+      window.storage.get(KEY,false).then(function(r){
+        if(r&&r.value){
+          try{ var s=JSON.parse(r.value); if(s&&s.picks){ state={picks:s.picks||{},notes:s.notes||{}}; } }catch(e){}
+        }
+        cb();
+      },function(){cb();});
+    }catch(e){cb();}
+  }
+
+  /* ---- build the four verdict buttons + a stamp on every card ---- */
+  cards.forEach(function(card){
+    var bar=document.createElement('div');
+    bar.className='choices'; bar.setAttribute('role','group'); bar.setAttribute('aria-label','Your verdict on this idea');
+    CHOICES.forEach(function(c){
+      var b=document.createElement('button');
+      b.type='button'; b.className='choice c-'+c.k; b.dataset.k=c.k; b.setAttribute('aria-pressed','false');
+      b.innerHTML='<span class="ic" aria-hidden="true">'+c.icon+'</span><span>'+c.label+'</span>';
+      b.addEventListener('click',function(){ toggle(card.id,c.k); });
+      bar.appendChild(b);
+    });
+    card.appendChild(bar);
+    var st=document.createElement('span'); st.className='stamp'; st.hidden=true; st.setAttribute('aria-hidden','true');
+    card.appendChild(st);
+  });
+  function toggle(id,k){
+    if(state.picks[id]===k){ delete state.picks[id]; } else { state.picks[id]=k; }
+    save(); render();
+  }
+
+  /* ---- render buttons, stamps, columns, counter ---- */
+  function render(){
+    var counts={agreed:0,nope:0,modify:0,what:0};
+    cards.forEach(function(card){
+      var k=state.picks[card.id]||'';
+      if(k)card.setAttribute('data-pick',k); else card.removeAttribute('data-pick');
+      var btns=card.querySelectorAll('.choice');
+      for(var i=0;i<btns.length;i++){ btns[i].setAttribute('aria-pressed', btns[i].dataset.k===k?'true':'false'); }
+      var st=card.querySelector('.stamp');
+      if(k){ st.hidden=false; st.textContent=choice(k).label; st.className='stamp st-'+k; counts[k]++; }
+      else { st.hidden=true; }
+    });
+    CHOICES.forEach(function(c){
+      var col=document.getElementById('col-'+c.k);
+      var ol=col.querySelector('ol'); ol.innerHTML='';
+      var ids=idsFor(c.k);
+      ids.forEach(function(id){
+        var m=META[id];
+        var li=document.createElement('li');
+        var a=document.createElement('a'); a.href='#'+id;
+        a.innerHTML='<i class="lv s-'+m.level+'"></i>'+esc(m.num)+'. '+esc(m.title)+'<small>'+(LEVEL[m.level]||'')+' · '+esc(m.cost)+'</small>';
+        li.appendChild(a);
+        if(c.k==='modify'||c.k==='what'){
+          var inp=document.createElement('input');
+          inp.type='text'; inp.maxLength=160;
+          inp.placeholder = c.k==='modify' ? 'What should change?' : 'What confused you?';
+          inp.value=state.notes[id]||'';
+          inp.setAttribute('aria-label',(c.k==='modify'?'Change note for ':'Question about ')+m.title);
+          inp.addEventListener('input',function(){ state.notes[id]=inp.value; save(); });
+          li.appendChild(inp);
+        }
+        ol.appendChild(li);
+      });
+      col.querySelector('.cnt').textContent=ids.length;
+      col.querySelector('.empty').hidden=ids.length>0;
+    });
+    var total=counts.agreed+counts.nope+counts.modify+counts.what;
+    picksChip.textContent='Picks '+total+'/26 · ✓'+counts.agreed+' ✗'+counts.nope+' ✎'+counts.modify+' ?!'+counts.what+' ↓';
+  }
+
+  /* ---- copy as text / reset ---- */
+  function summaryText(){
+    var lines=['MY PICKS — Build-it-yourself menu'];
+    CHOICES.forEach(function(c){
+      var ids=idsFor(c.k);
+      var parts=ids.map(function(id){
+        var m=META[id]; var t=m.num+' '+m.title;
+        var n=(state.notes[id]||'').trim();
+        if(n&&(c.k==='modify'||c.k==='what')) t+=' — "'+n+'"';
+        return t;
+      });
+      lines.push(c.icon+' '+c.label.toUpperCase()+' ('+ids.length+'): '+(parts.length?parts.join('; '):'—'));
+    });
+    lines.push('Undecided: '+(cards.length-Object.keys(state.picks).length));
+    return lines.join('\n');
+  }
+  function flash(msg){
+    var old='Copy my picks as text';
+    copyBtn.textContent=msg;
+    setTimeout(function(){copyBtn.textContent=old;},2600);
+  }
+  copyBtn.addEventListener('click',function(){
+    var t=summaryText();
+    ta.value=t; ta.hidden=false;
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(function(){flash('Copied — paste it in the chat');},function(){flash('Long-press the text below to copy');});
+    }else{
+      try{ ta.focus(); ta.select(); var ok=document.execCommand('copy'); flash(ok?'Copied — paste it in the chat':'Long-press the text below to copy'); }
+      catch(e){ flash('Long-press the text below to copy'); }
+    }
+  });
+  resetBtn.addEventListener('click',function(){
+    if(confirm('Clear all your picks and notes?')){ state={picks:{},notes:{}}; save(); render(); ta.hidden=true; }
+  });
+  picksChip.addEventListener('click',function(){
+    var el=document.getElementById('columns');
+    if(el.scrollIntoView){ el.scrollIntoView({behavior:'smooth',block:'start'}); } else { location.hash='#columns'; }
+  });
+
+  load(function(){
+    render();
+    saveNote.textContent = hasStore ? 'Your picks and notes save automatically.' : 'Your picks last until you close this page — copy them as text before you leave.';
+  });
+})();
+</script>
+</body>
+</html>
