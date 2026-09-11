@@ -3,36 +3,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Study Tools</title>
+<title>Beyond NCERT</title>
 <style>*{box-sizing:border-box}
-:root{--bg:#fbfbfa;--ink:#16181d;--dim:#5b6470;--line:#dfe3e8;--accent:#1f4fd8}
-@media(prefers-color-scheme:dark){:root{--bg:#121417;--ink:#e8ecf1;--dim:#95a0ad;--line:#2a2f36;--accent:#7aa2ff}}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-.wrap{max-width:760px;margin:0 auto;padding:56px 20px 80px}
-h1{font-size:clamp(26px,5vw,38px);margin:0 0 6px;letter-spacing:-.02em}
-.sub{color:var(--dim);margin:0 0 36px;max-width:60ch}
-a.card{display:block;text-decoration:none;color:inherit;border:1px solid var(--line);
- border-radius:10px;padding:16px 18px;margin-bottom:12px;transition:border-color .15s,transform .15s}
+:root{--bg:#fbfbfa;--card:#fff;--ink:#16181d;--dim:#5b6470;--line:#dfe3e8;--accent:#1f4fd8;--offer:#0c6b58;--offerbg:#eaf6f2}
+@media(prefers-color-scheme:dark){:root{--bg:#121417;--card:#181b20;--ink:#e8ecf1;--dim:#95a0ad;--line:#2a2f36;--accent:#7aa2ff;--offer:#5fd3b2;--offerbg:#12241f}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.62 ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.wrap{max-width:800px;margin:0 auto;padding:52px 20px 84px}
+h1{font-size:clamp(28px,5.4vw,42px);margin:0 0 10px;letter-spacing:-.022em;line-height:1.1}
+.lede{color:var(--dim);margin:0 0 14px;font-size:18px;max-width:62ch}
+.note{color:var(--dim);margin:0 0 34px;font-size:14.5px;max-width:62ch}
+a.card{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);
+ border-radius:12px;padding:18px 20px;margin-bottom:12px;transition:border-color .15s,transform .15s}
 a.card:hover{border-color:var(--accent);transform:translateY(-1px)}
-a.card b{display:block;font-size:17px;margin-bottom:3px}
-a.card span{color:var(--dim);font-size:14.5px}
+a.card b{display:block;font-size:17.5px;margin-bottom:4px}
+a.card span{color:var(--dim);font-size:14.5px;display:block}
+.feat{margin:34px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+@media(max-width:620px){.feat{grid-template-columns:1fr}}
+.feat li{color:var(--dim);font-size:14.5px;padding-left:20px;position:relative}
+.feat li:before{content:"\2713";position:absolute;left:0;color:var(--accent);font-weight:700}
+.offer{margin-top:38px;background:var(--offerbg);border:1px solid var(--offer);border-radius:12px;padding:20px 22px}
+.offer b{display:block;font-size:17px;margin-bottom:7px;color:var(--offer)}
+.offer p{margin:0 0 12px;font-size:15px}
+.offer a{display:inline-block;background:var(--offer);color:#fff;text-decoration:none;padding:9px 16px;border-radius:8px;font-weight:600;font-size:14.5px}
 footer{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);color:var(--dim);font-size:14px}
 footer a{color:var(--accent)}
 </style>
 </head>
 <body>
 <div class="wrap">
-<h1>Study Tools</h1>
-<p class="sub">Single-file web pages built while preparing for NEET, and afterwards. No build step, no dependencies, no server — open one and it works.</p>
-<a class="card" href="beyond-ncert/"><b>Beyond NCERT</b><span>Curriculum explorer — the whole syllabus, searchable, progress kept</span></a>
-<a class="card" href="beyond-ncert/grand-revision.html"><b>The Grand Revision</b><span>Everything learned, then the first paper</span></a>
+<h1>Beyond NCERT</h1>
+<p class="lede">Three tools for the exam itself, and for the gap between what NCERT teaches and what the questions test.</p>
+<p class="note">The Curriculum Explorer is the largest thing I have built: 113 functions, per-day quizzes, and a tutor you plug your own API key into.</p>
+<a class="card" href="curriculum-explorer/"><b>Curriculum Explorer</b><span>The whole syllabus, searchable, with quizzes, saved progress and a built-in tutor</span></a>
+<a class="card" href="grand-revision/"><b>The Grand Revision</b><span>Two days: revise everything, then find a question and solve it. 16 themed sections</span></a>
 <a class="card" href="the-recut/"><b>The Recut</b><span>The same month in one ten-hour pass, cut like an edit timeline</span></a>
-<a class="card" href="relativity-explorer/"><b>Relativity Explorer</b><span>Special and general relativity — and how we know</span></a>
-<a class="card" href="free-ai-stack/"><b>The Free AI Stack</b><span>21 days, everything Claude, ₹0 for the rest</span></a>
-<a class="card" href="virtual-cell-plate-map/"><b>Virtual Cell Plate Map</b><span>A guide laid out as a 96-well microplate</span></a>
-<a class="card" href="the-big-menu/"><b>The Big Menu</b><span>26 things to build at home that do what you tell them</span></a>
-<a class="card" href="india-science-events/"><b>India Science Events</b><span>Where the science happens, and when</span></a>
-<footer>Built by <a href="https://github.com/Arnav-Agarwal137">Arnav Agarwal</a>. These are shaped around one person&rsquo;s situation on purpose &mdash; if you want one built around yours, ask me.</footer>
+<ul class="feat">
+<li>Search, filter and sort across every topic</li>
+<li>Per-day quizzes with retake</li>
+<li>Bring-your-own-key tutor, stays in your browser</li>
+<li>Canvas charts</li>
+<li>Mark-revised and expand/collapse all</li>
+<li>Keyboard navigation</li>
+<li>One HTML file each &mdash; no install</li>
+<li>Works offline once saved</li>
+<li>Progress kept in your browser only</li>
+<li>Nothing uploaded anywhere</li>
+<li>Built for a phone, not shrunk onto one</li>
+<li>Free and MIT licensed</li>
+</ul>
+<div class="offer"><b>Want one for your syllabus?</b><p>These follow my NEET syllabus, my gaps and my order &mdash; which is why they work rather than being generic. If you want one shaped around your exam, ask. <b>Free at the moment</b>, for honest feedback.</p><a href="https://github.com/Arnav-Agarwal137/beyond-ncert/issues/new">Ask on GitHub &rarr;</a></div>
+<footer>Built by <a href="https://github.com/Arnav-Agarwal137">Arnav Agarwal</a>. MIT licensed. No login, no tracking, nothing uploaded anywhere.</footer>
 </div>
 </body>
 </html>
