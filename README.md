@@ -17,6 +17,8 @@ The whole syllabus, opened up and made navigable rather than listed.
 - **A built-in tutor.** Paste your own Anthropic API key and ask questions about
   the topic you are standing on. **The key is yours, stays in your browser, and
   is never sent anywhere but Anthropic** — there is no server here to send it to
+- **Copy any prompt straight to your clipboard** — one click, ready to paste
+  into Claude, so you are never retyping a question you already wrote
 - Charts drawn on canvas, **keyboard-navigable**, full mobile layout
 - "Go to today's work" — it remembers the day you are on
 
@@ -45,6 +47,11 @@ The same month compressed into **one ten-hour pass**, cut like a broadcast edit
 timeline — reels, clips, timecodes and markers instead of chapters.
 
 For the week before the exam, when there is no time left for a month.
+
+- **A real dark mode with a toggle** — the only one of the three that has it,
+  because this is the one you read at two in the morning
+- **~197 KB, 47 interactive controls.** Reels, clips and timecodes you move
+  through like a cut, with your position kept between visits
 
 ---
 
