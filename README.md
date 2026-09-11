@@ -21,6 +21,16 @@ The whole syllabus, opened up and made navigable rather than listed.
   into Claude, so you are never retyping a question you already wrote
 - Charts drawn on canvas, **keyboard-navigable**, full mobile layout
 - "Go to today's work" — it remembers the day you are on
+- **A professor who reacts to your answers.** Get one right and he responds;
+  get it wrong and he responds differently. Sitting a quiz alone at midnight
+  is grim, and this is the cheapest possible fix for that
+- **Combo streaks, sparkles, screen shake, and confetti at 70%** — with a
+  second burst if you take the whole thing clean at 100%
+- **An animated 3D background**, and a **Lite mode** that switches the whole
+  effects layer off. It also disables itself automatically if your system asks
+  for reduced motion — the effects are never in charge of whether you can read
+- **A fact deck** — "Tell me a fact", then "Another", for the minutes when you
+  cannot face a whole topic
 
 **~327 KB, 113 functions, 21 responsive breakpoints.** The largest thing in this
 repository and the one I used most.
@@ -37,6 +47,10 @@ A two-day structure for revising everything and then producing something with it
 - **82 interactive controls**: mark-revised, expand and collapse all, per-stage
   clears, quizzes with retake, a calendar you adopt
 - Progress saved; the whole thing survives closing the tab
+- **Fact breaks built into the day** — four, five or six quick ones pulled from
+  the plan's own fact deck, placed where attention actually goes
+- **"Alternate Routes / Side Doors"** and a **"Final Reflection — write, don't
+  watch"** closing section
 
 The point of Day 2 is the part revision normally skips — **you do not know you
 understood something until you try to use it.**
